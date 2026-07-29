@@ -13,7 +13,7 @@ class ProfileTest extends TestCase
 
     public function test_user_can_update_profile()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $user->profile()->create([
             'username' => 'olduser',
             'bio' => 'Old bio',
@@ -40,7 +40,7 @@ class ProfileTest extends TestCase
 
     public function test_user_can_upload_avatar()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $user->profile()->create(['username' => 'testuser']);
 
         $file = UploadedFile::fake()->image('avatar.jpg');
@@ -59,12 +59,12 @@ class ProfileTest extends TestCase
 
     public function test_user_can_update_privacy_settings()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $user->profile()->create(['username' => 'testuser']);
 
         $response = $this->actingAs($user)
             ->putJson('/api/v1/profile/privacy-settings', [
-                'settings' => ['show_email' => false, 'show_subscribers' => true],
+                'settings' => ['show_email' => 'everyone', 'show_subscribers' => 'subscribers'],
             ]);
 
         $response->assertStatus(200)
@@ -76,7 +76,7 @@ class ProfileTest extends TestCase
 
     public function test_user_can_update_notification_settings()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $user->profile()->create(['username' => 'testuser']);
 
         $response = $this->actingAs($user)

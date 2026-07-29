@@ -51,8 +51,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/videos', [VideoController::class, 'store']);
         Route::put('/videos/{id}', [VideoController::class, 'update']);
         Route::delete('/videos/{id}', [VideoController::class, 'destroy']);
-        Route::post('/videos/{id}/like', [VideoController::class, 'toggleLike']);
-        Route::post('/videos/{id}/view', [VideoController::class, 'incrementView']);
+        Route::post('/videos/{id}/like', [VideoController::class, 'like']);
+        Route::post('/videos/{id}/view', [VideoController::class, 'view']);
     });
 
     Route::get('/videos/{videoId}/comments', [CommentController::class, 'index']);
@@ -60,7 +60,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/videos/{videoId}/comments', [CommentController::class, 'store']);
         Route::put('/comments/{id}', [CommentController::class, 'update']);
         Route::delete('/comments/{id}', [CommentController::class, 'destroy']);
-        Route::post('/comments/{id}/like', [CommentController::class, 'toggleLike']);
+        Route::post('/comments/{id}/like', [CommentController::class, 'like']);
         Route::post('/comments/{id}/pin', [CommentController::class, 'pin']);
         Route::post('/comments/{id}/unpin', [CommentController::class, 'unpin']);
         Route::get('/comments/{id}/replies', [CommentController::class, 'replies']);

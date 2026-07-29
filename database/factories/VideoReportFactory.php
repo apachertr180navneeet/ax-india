@@ -13,7 +13,7 @@ class VideoReportFactory extends Factory
         return [
             'user_id' => User::factory(),
             'video_id' => Video::factory(),
-            'reason' => fake()->randomElement(['spam', 'copyright', 'violence', 'harassment', 'other']),
+            'reason' => fake()->randomElement(['spam', 'copyright', 'violence', 'other']),
             'description' => fake()->paragraph(),
             'status' => 'pending',
         ];

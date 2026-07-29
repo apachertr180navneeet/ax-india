@@ -14,7 +14,7 @@ class WatchHistoryTest extends TestCase
 
     public function test_watch_history_is_tracked()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create();
 
         $response = $this->actingAs($user)
@@ -37,7 +37,7 @@ class WatchHistoryTest extends TestCase
 
     public function test_user_can_clear_history()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create();
 
         WatchHistory::create([
@@ -62,7 +62,7 @@ class WatchHistoryTest extends TestCase
 
     public function test_user_can_remove_single_history_item()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create();
 
         WatchHistory::create([

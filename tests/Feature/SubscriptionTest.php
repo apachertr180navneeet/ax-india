@@ -12,8 +12,8 @@ class SubscriptionTest extends TestCase
 
     public function test_user_can_subscribe_to_creator()
     {
-        $user = User::factory()->create();
-        $creator = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
+        $creator = User::withoutEvents(fn () => User::factory()->create());
 
         $response = $this->actingAs($user)
             ->postJson('/api/v1/subscriptions', [
@@ -34,20 +34,21 @@ class SubscriptionTest extends TestCase
 
     public function test_user_cannot_subscribe_to_self()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
 
         $response = $this->actingAs($user)
             ->postJson('/api/v1/subscriptions', [
                 'creator_id' => $user->id,
             ]);
 
-        $response->assertStatus(400);
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors('creator_id');
     }
 
     public function test_user_can_unsubscribe()
     {
-        $user = User::factory()->create();
-        $creator = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
+        $creator = User::withoutEvents(fn () => User::factory()->create());
 
         \App\Models\Subscription::create([
             'subscriber_id' => $user->id,
@@ -68,8 +69,8 @@ class SubscriptionTest extends TestCase
 
     public function test_subscription_count_increases()
     {
-        $user = User::factory()->create();
-        $creator = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
+        $creator = User::withoutEvents(fn () => User::factory()->create());
 
         $this->actingAs($user)
             ->postJson('/api/v1/subscriptions', [

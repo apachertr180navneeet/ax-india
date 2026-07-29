@@ -23,8 +23,14 @@ class AuthService
     {
         try {
             return DB::transaction(function () use ($data) {
+                $firstName = $data['first_name'] ?? '';
+                $lastName = $data['last_name'] ?? '';
+                $fullName = $data['full_name'] ?? $data['name'] ?? trim($firstName . ' ' . $lastName);
                 $user = $this->user->create([
-                    'name' => $data['name'],
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                    'full_name' => $fullName,
+                    'slug' => $data['slug'] ?? $this->generateSlug($this->user, $fullName),
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
                     'phone' => $data['phone'] ?? null,
@@ -32,7 +38,7 @@ class AuthService
 
                 $this->profile->create([
                     'user_id' => $user->id,
-                    'username' => $data['username'] ?? $this->generateSlug($this->user, $data['name']),
+                    'username' => $data['username'] ?? $this->generateSlug($this->user, $fullName),
                     'gender' => $data['gender'] ?? null,
                     'dob' => $data['dob'] ?? null,
                     'country' => $data['country'] ?? null,

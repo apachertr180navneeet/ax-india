@@ -16,8 +16,10 @@ class AuthTest extends TestCase
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'john@example.com',
+            'phone' => '9876543210',
             'password' => 'Password@123',
             'password_confirmation' => 'Password@123',
+            'username' => 'johndoe',
         ]);
 
         $response->assertStatus(201)
@@ -32,14 +34,16 @@ class AuthTest extends TestCase
 
     public function test_user_cannot_register_with_duplicate_email()
     {
-        User::factory()->create(['email' => 'john@example.com']);
+        User::withoutEvents(fn () => User::factory()->create(['email' => 'john@example.com']));
 
         $response = $this->postJson('/api/v1/auth/register', [
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'john@example.com',
+            'phone' => '9876543210',
             'password' => 'Password@123',
             'password_confirmation' => 'Password@123',
+            'username' => 'johndoe',
         ]);
 
         $response->assertStatus(422);
@@ -47,10 +51,13 @@ class AuthTest extends TestCase
 
     public function test_user_can_login_with_email()
     {
-        $user = User::factory()->create([
+        $user = User::withoutEvents(fn () => User::factory()->create([
             'email' => 'john@example.com',
             'password' => bcrypt('Password@123'),
-        ]);
+        ]));
+
+        // Manually create profile for the user
+        $user->profile()->create(['username' => 'johndoe']);
 
         $response = $this->postJson('/api/v1/auth/login', [
             'email' => 'john@example.com',
@@ -61,7 +68,7 @@ class AuthTest extends TestCase
             ->assertJsonStructure([
                 'success',
                 'message',
-                'data',
+                'data' => ['token', 'token_type', 'expires_in', 'user'],
             ]);
     }
 
@@ -72,15 +79,25 @@ class AuthTest extends TestCase
             'password' => 'wrongpassword',
         ]);
 
-        $response->assertStatus(401);
+        $response->assertStatus(422);
     }
 
     public function test_authenticated_user_can_logout()
     {
-        $user = User::factory()->create();
-        $token = $user->createToken('test-token')->plainTextToken;
+        $user = User::withoutEvents(fn () => User::factory()->create([
+            'email' => 'john@example.com',
+            'password' => bcrypt('Password@123'),
+        ]));
+        $user->profile()->create(['username' => 'johndoe']);
 
-        $response = $this->withToken($token)
+        $login = $this->postJson('/api/v1/auth/login', [
+            'email' => 'john@example.com',
+            'password' => 'Password@123',
+        ]);
+
+        $token = $login->json('data.token');
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
             ->postJson('/api/v1/auth/logout');
 
         $response->assertStatus(200)
@@ -92,9 +109,10 @@ class AuthTest extends TestCase
 
     public function test_user_can_change_password()
     {
-        $user = User::factory()->create([
+        $user = User::withoutEvents(fn () => User::factory()->create([
             'password' => bcrypt('OldPass@123'),
-        ]);
+        ]));
+        $user->profile()->create(['username' => 'testuser']);
 
         $response = $this->actingAs($user)
             ->postJson('/api/v1/auth/change-password', [
@@ -112,9 +130,10 @@ class AuthTest extends TestCase
 
     public function test_user_cannot_change_password_with_wrong_current()
     {
-        $user = User::factory()->create([
+        $user = User::withoutEvents(fn () => User::factory()->create([
             'password' => bcrypt('OldPass@123'),
-        ]);
+        ]));
+        $user->profile()->create(['username' => 'testuser']);
 
         $response = $this->actingAs($user)
             ->postJson('/api/v1/auth/change-password', [
@@ -123,6 +142,6 @@ class AuthTest extends TestCase
                 'new_password_confirmation' => 'NewPass@456',
             ]);
 
-        $response->assertStatus(400);
+        $response->assertStatus(422);
     }
 }

@@ -24,7 +24,8 @@ class VideoTest extends TestCase
 
     public function test_authenticated_user_can_upload_video()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
+        $user->profile()->create(['username' => 'testuser']);
 
         $file = UploadedFile::fake()->create('video.mp4', 1024);
         $thumbnail = UploadedFile::fake()->image('thumb.jpg');
@@ -35,7 +36,6 @@ class VideoTest extends TestCase
                 'description' => 'Video description here',
                 'video' => $file,
                 'thumbnail' => $thumbnail,
-                'category_id' => 1,
                 'visibility' => 'public',
             ]);
 
@@ -63,7 +63,7 @@ class VideoTest extends TestCase
 
     public function test_user_can_like_video()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create();
 
         $response = $this->actingAs($user)
@@ -82,7 +82,7 @@ class VideoTest extends TestCase
 
     public function test_user_cannot_like_same_video_twice()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create();
 
         VideoLike::create([
@@ -113,7 +113,7 @@ class VideoTest extends TestCase
 
     public function test_user_can_update_own_video()
     {
-        $user = User::factory()->create();
+        $user = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)
@@ -130,8 +130,8 @@ class VideoTest extends TestCase
 
     public function test_user_cannot_update_others_video()
     {
-        $owner = User::factory()->create();
-        $other = User::factory()->create();
+        $owner = User::withoutEvents(fn () => User::factory()->create());
+        $other = User::withoutEvents(fn () => User::factory()->create());
         $video = Video::factory()->create(['user_id' => $owner->id]);
 
         $response = $this->actingAs($other)
