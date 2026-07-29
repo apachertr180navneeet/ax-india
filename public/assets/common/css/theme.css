@@ -761,3 +761,56 @@ a:hover {
     border-color: var(--almond-silk);
     box-shadow: 0 0 0 4px rgba(213, 189, 175, 0.3);
 }
+
+/* ==========================================================================
+   Theme Compatibility Overrides (Tables, Cards, Forms & Badges)
+   ========================================================================== */
+.card, .theme-card {
+    background-color: var(--linen) !important;
+    border: 1px solid var(--bone) !important;
+    color: var(--text-primary) !important;
+}
+
+.table, .table-dark {
+    --bs-table-bg: var(--linen) !important;
+    --bs-table-color: var(--text-primary) !important;
+    --bs-table-hover-bg: var(--almond-cream) !important;
+    --bs-table-hover-color: var(--text-primary) !important;
+    --bs-table-border-color: var(--bone) !important;
+    color: var(--text-primary) !important;
+    background-color: var(--linen) !important;
+    border-color: var(--bone) !important;
+}
+
+.table th, .table td {
+    color: var(--text-primary) !important;
+    border-color: var(--bone) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--almond-cream) !important;
+    color: var(--text-primary) !important;
+}
+
+.form-control, .form-select {
+    background-color: var(--parchment) !important;
+    border: 1px solid var(--bone) !important;
+    color: var(--text-primary) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #ffffff !important;
+    border-color: var(--almond-silk) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(213, 189, 175, 0.4) !important;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted) !important;
+}
+
+.list-group-item {
+    background-color: var(--linen) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--bone) !important;
+}

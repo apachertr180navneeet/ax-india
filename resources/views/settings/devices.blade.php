@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container py-4">
-    <h2 class="mb-4 text-white"><i class="bi bi-shield-lock me-2 text-primary"></i>Device Management & Active Sessions</h2>
+    <h2 class="mb-4 text-dark"><i class="bi bi-shield-lock me-2 text-primary"></i>Device Management & Active Sessions</h2>
 
-    <div class="card bg-dark text-white border-secondary mb-4">
-        <div class="card-header border-secondary d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Logged In Devices</h5>
+    <div class="card mb-4">
+        <div class="card-header border-0 bg-transparent d-flex align-items-center justify-content-between">
+            <h5 class="mb-0 text-dark">Logged In Devices</h5>
             <span class="badge bg-success"><i class="bi bi-shield-check me-1"></i>2FA Active</span>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-dark table-hover mb-0 align-middle">
+                <table class="table table-hover mb-0 align-middle">
                     <thead>
                         <tr>
                             <th>Device / Platform</th>

@@ -20,53 +20,53 @@
     <!-- Quick Stats Cards -->
     <div class="row g-3 mb-4">
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-dark text-white">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
                 <div class="d-flex align-items-center">
                     <div class="bg-danger bg-opacity-25 text-danger rounded-circle p-3 me-3">
                         <i class="bi bi-play-btn fs-4"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small">Total Videos</div>
-                        <h4 class="fw-bold mb-0">{{ number_format($totalVideos) }}</h4>
+                        <div class="text-muted small">Total Videos</div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ number_format($totalVideos) }}</h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-dark text-white">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
                 <div class="d-flex align-items-center">
                     <div class="bg-primary bg-opacity-25 text-primary rounded-circle p-3 me-3">
                         <i class="bi bi-eye fs-4"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small">Total Views</div>
-                        <h4 class="fw-bold mb-0">{{ number_format($totalViews) }}</h4>
+                        <div class="text-muted small">Total Views</div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ number_format($totalViews) }}</h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-dark text-white">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
                 <div class="d-flex align-items-center">
                     <div class="bg-warning bg-opacity-25 text-warning rounded-circle p-3 me-3">
                         <i class="bi bi-people fs-4"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small">Subscribers</div>
-                        <h4 class="fw-bold mb-0">{{ number_format($totalSubscribers) }}</h4>
+                        <div class="text-muted small">Subscribers</div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ number_format($totalSubscribers) }}</h4>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-dark text-white">
+            <div class="card border-0 shadow-sm rounded-4 p-3">
                 <div class="d-flex align-items-center">
                     <div class="bg-success bg-opacity-25 text-success rounded-circle p-3 me-3">
                         <i class="bi bi-currency-dollar fs-4"></i>
                     </div>
                     <div>
-                        <div class="text-secondary small">Estimated Revenue</div>
-                        <h4 class="fw-bold mb-0">${{ number_format($totalEarnings, 2) }}</h4>
+                        <div class="text-muted small">Estimated Revenue</div>
+                        <h4 class="fw-bold mb-0 text-dark">${{ number_format($totalEarnings, 2) }}</h4>
                     </div>
                 </div>
             </div>
@@ -74,10 +74,10 @@
     </div>
 
     <!-- Recent Uploads Table -->
-    <div class="card border-0 shadow-sm rounded-4 bg-dark text-white p-3">
+    <div class="card border-0 shadow-sm rounded-4 p-3">
         <h5 class="fw-bold mb-3">Recent Uploads</h5>
         <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
+            <table class="table table-hover align-middle mb-0">
                 <thead>
                     <tr>
                         <th>Video</th>
@@ -94,8 +94,8 @@
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $video->thumbnail ?? 'https://via.placeholder.com/120x68' }}" class="rounded me-3" style="width: 80px; height: 45px; object-fit: cover;">
                                     <div>
-                                        <div class="fw-bold text-truncate" style="max-width: 250px;">{{ $video->title }}</div>
-                                        <div class="small text-secondary">{{ $video->is_short ? 'Short Video' : 'Standard Video' }}</div>
+                                        <div class="fw-bold text-dark text-truncate" style="max-width: 250px;">{{ $video->title }}</div>
+                                        <div class="small text-muted">{{ $video->is_short ? 'Short Video' : 'Standard Video' }}</div>
                                     </div>
                                 </div>
                             </td>

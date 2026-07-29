@@ -8,9 +8,9 @@
         <div class="alert alert-success rounded-3 mb-4">{{ session('success') }}</div>
     @endif
 
-    <div class="card border-0 shadow-sm rounded-4 bg-dark text-white p-3">
+    <div class="card border-0 shadow-sm rounded-4 p-3">
         <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
+            <table class="table table-hover align-middle mb-0">
                 <thead>
                     <tr>
                         <th>Video</th>
@@ -26,12 +26,12 @@
                                 <div class="d-flex align-items-center">
                                     <img src="{{ $video->thumbnail ?? 'https://via.placeholder.com/120x68' }}" class="rounded me-3" style="width: 80px; height: 45px; object-fit: cover;">
                                     <div>
-                                        <div class="fw-bold">{{ $video->title }}</div>
-                                        <div class="small text-secondary">{{ $video->created_at->diffForHumans() }}</div>
+                                        <div class="fw-bold text-dark">{{ $video->title }}</div>
+                                        <div class="small text-muted">{{ $video->created_at->diffForHumans() }}</div>
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $video->user->name ?? 'Unknown' }}</td>
+                            <td class="text-dark">{{ $video->user->name ?? 'Unknown' }}</td>
                             <td>
                                 <span class="badge bg-{{ $video->status === 'approved' ? 'success' : ($video->status === 'pending' ? 'warning' : 'danger') }}">
                                     {{ ucfirst($video->status->value) }}
@@ -54,7 +54,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center py-4 text-secondary">No videos found for moderation.</td>
+                            <td colspan="4" class="text-center py-4 text-muted">No videos found for moderation.</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -17,19 +17,19 @@
 
     <div class="row g-4">
         <div class="col-md-7">
-            <div class="card border-0 shadow-sm rounded-4 bg-dark text-white p-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
                 <h5 class="fw-bold mb-3"><i class="bi bi-broadcast text-danger me-2"></i>Create New Live Broadcast</h5>
                 <form action="{{ route('creator.live.key') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label text-secondary">Stream Title</label>
-                        <input type="text" name="title" class="form-control bg-secondary bg-opacity-10 border-0 text-white" placeholder="My Epic Live Stream" required>
+                        <label class="form-label text-muted">Stream Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="My Epic Live Stream" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary">Description</label>
-                        <textarea name="description" class="form-control bg-secondary bg-opacity-10 border-0 text-white" rows="4" placeholder="Tell viewers what your stream is about..."></textarea>
+                        <label class="form-label text-muted">Description</label>
+                        <textarea name="description" class="form-control" rows="4" placeholder="Tell viewers what your stream is about..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-danger btn-lg w-100 rounded-3 fw-bold">
+                    <button type="submit" class="btn btn-primary-custom btn-lg w-100 rounded-3 fw-bold">
                         <i class="bi bi-key-fill me-2"></i>Generate Stream Key
                     </button>
                 </form>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="col-md-5">
-            <div class="card border-0 shadow-sm rounded-4 bg-dark text-white p-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
                 <h5 class="fw-bold mb-3"><i class="bi bi-info-circle text-primary me-2"></i>Current Stream Status</h5>
                 @if($liveStream)
                     <div class="mb-3">
@@ -46,15 +46,15 @@
                         </span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary">Server URL (RTMP)</label>
-                        <input type="text" class="form-control bg-secondary bg-opacity-10 border-0 text-white" value="rtmp://live.axvideo.com/live" readonly>
+                        <label class="form-label text-muted">Server URL (RTMP)</label>
+                        <input type="text" class="form-control" value="rtmp://live.axvideo.com/live" readonly>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label text-secondary">Stream Key</label>
-                        <input type="text" class="form-control bg-secondary bg-opacity-10 border-0 text-white" value="{{ $liveStream->stream_key }}" readonly>
+                        <label class="form-label text-muted">Stream Key</label>
+                        <input type="text" class="form-control" value="{{ $liveStream->stream_key }}" readonly>
                     </div>
                 @else
-                    <div class="text-center py-4 text-secondary">
+                    <div class="text-center py-4 text-muted">
                         <i class="bi bi-camera-video-off fs-1 d-block mb-2"></i>
                         No active stream configured. Generate a stream key to start live broadcasting.
                     </div>
