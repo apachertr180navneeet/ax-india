@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\AdminPaymentController;
 
 // Public Web Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 Route::get('/watch/{slug}', [VideoWatchController::class, 'show'])->name('watch');
 Route::get('/channel/{username}', [ChannelController::class, 'show'])->name('channel');
 Route::get('/search', [SearchWebController::class, 'index'])->name('search');
