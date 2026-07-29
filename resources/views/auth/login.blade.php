@@ -1,35 +1,60 @@
-@extends('layouts.app')
+@extends('web.layouts.app')
 @section('title', 'Sign In - AX India')
-@section('content')
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6 col-lg-5" style="max-width:450px;">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <h4 class="text-center fw-bold mb-4"><i class="fas fa-play text-danger me-1"></i>Sign In</h4>
-                    <form action="{{ route('login') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="form-label">Email or Phone</label>
-                            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
-                            @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
-                            @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" name="remember" class="form-check-input" id="remember">
-                            <label class="form-check-label" for="remember">Remember me</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign In</button>
-                    </form>
-                    <div class="text-center mt-3">
-                        <p class="mb-1 small">Don't have an account? <a href="{{ route('register') }}">Register</a></p>
 
-                    </div>
+@section('content')
+<div class="auth-wrapper">
+    <div class="auth-card" style="max-width: 440px;">
+        <div class="auth-header">
+            <div class="logo-icon mx-auto mb-3" style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--almond-silk), var(--almond-cream)); border: 1px solid var(--bone); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(213, 189, 175, 0.4);">
+                <i class="bi bi-play-btn-fill fs-4" style="color: var(--text-primary);"></i>
+            </div>
+            <h2 class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Sign in to your AX-India account</p>
+        </div>
+
+        @if (session('status'))
+            <div class="alert alert-success border-0 rounded-3 mb-4" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="auth-input-group">
+                <label for="email"><i class="bi bi-envelope me-1"></i> Email or Phone</label>
+                <input type="text" id="email" name="email" class="auth-input @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter your email or phone" required autofocus>
+                @error('email')
+                    <div class="text-danger small mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="auth-input-group">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label for="password" class="mb-0"><i class="bi bi-lock me-1"></i> Password</label>
+                </div>
+                <input type="password" id="password" name="password" class="auth-input @error('password') is-invalid @enderror" placeholder="••••••••" required>
+                @error('password')
+                    <div class="text-danger small mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div class="form-check m-0">
+                    <input type="checkbox" name="remember" class="form-check-input" id="remember">
+                    <label class="form-check-label text-secondary small" for="remember">Remember me</label>
                 </div>
             </div>
-        </div>
+
+            <button type="submit" class="btn-custom btn-primary-custom w-100 py-2.5 mb-3" style="font-size: 1rem;">
+                <i class="bi bi-box-arrow-in-right me-2"></i> Sign In
+            </button>
+
+            <div class="text-center mt-3 pt-3 border-top">
+                <p class="mb-0 text-secondary small">
+                    Don't have an account? <a href="{{ route('register') }}" class="fw-bold" style="color: var(--text-primary);">Create one now</a>
+                </p>
+            </div>
+        </form>
     </div>
+</div>
 @endsection

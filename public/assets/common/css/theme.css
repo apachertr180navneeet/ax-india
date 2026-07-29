@@ -657,3 +657,107 @@ a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* Custom Buttons & Auth UI */
+.btn-custom {
+    padding: 0.55rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--almond-silk), var(--almond-cream));
+    color: var(--text-primary) !important;
+    border: 1px solid var(--bone);
+    box-shadow: 0 4px 12px rgba(213, 189, 175, 0.4);
+}
+
+.btn-primary-custom:hover {
+    background: linear-gradient(135deg, var(--accent-hover), var(--almond-silk));
+    color: var(--text-primary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(213, 189, 175, 0.5);
+}
+
+.btn-outline-custom {
+    background: transparent;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--bone);
+}
+
+.btn-outline-custom:hover {
+    background: var(--linen);
+    color: var(--text-primary) !important;
+    border-color: var(--almond-silk);
+}
+
+.auth-wrapper {
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.auth-card {
+    background: #ffffff;
+    border: 1px solid var(--bone);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(43, 37, 35, 0.08);
+    padding: 2.5rem;
+    width: 100%;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-title {
+    font-size: 1.8rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.auth-input-group {
+    margin-bottom: 1.25rem;
+}
+
+.auth-input-group label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.auth-input {
+    width: 100%;
+    background-color: var(--linen);
+    border: 1px solid var(--bone);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
+}
+
+.auth-input:focus {
+    background-color: #ffffff;
+    border-color: var(--almond-silk);
+    box-shadow: 0 0 0 4px rgba(213, 189, 175, 0.3);
+}
