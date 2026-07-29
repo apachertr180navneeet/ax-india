@@ -64,10 +64,52 @@
 			</a>
 		</li>
 
-		<li class="menu-item {{ request()->is('admin/users') ? 'active' : ''}}">
+		<li class="menu-item {{ request()->is('admin/users*') ? 'active' : ''}}">
 			<a href="{{route('admin.users.index')}}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-group"></i>
 				<div data-i18n="User">Users</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/moderation*') ? 'active' : ''}}">
+			<a href="{{route('admin.moderation.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-video-off"></i>
+				<div data-i18n="Moderation">Video Moderation</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/categories*') ? 'active' : ''}}">
+			<a href="{{route('admin.categories.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-category"></i>
+				<div data-i18n="Categories">Categories</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/advertisements*') ? 'active' : ''}}">
+			<a href="{{route('admin.advertisements.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-briefcase"></i>
+				<div data-i18n="Advertisements">Advertisements</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/verifications*') ? 'active' : ''}}">
+			<a href="{{route('admin.verifications.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-badge-check"></i>
+				<div data-i18n="Verifications">Creator Verifications</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/reports*') ? 'active' : ''}}">
+			<a href="{{route('admin.reports.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-flag"></i>
+				<div data-i18n="Reports">Reports</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/payments*') ? 'active' : ''}}">
+			<a href="{{route('admin.payments.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-dollar-circle"></i>
+				<div data-i18n="Payments">Subscriptions & Payments</div>
 			</a>
 		</li>
 		
