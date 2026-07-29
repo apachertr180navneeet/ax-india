@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('web.layouts.app')
 @section('title', $channel->full_name . ' - AX India')
 @section('content')
     <div class="mb-4">

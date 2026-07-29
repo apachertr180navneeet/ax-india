@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('web.layouts.app')
 @section('title', 'AX India - Watch Videos')
 @section('content')
     <div class="row g-3">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('web.layouts.app')
 @section('title', 'Reset Password - AX India')
 @section('content')
     <div class="row justify-content-center mt-5">

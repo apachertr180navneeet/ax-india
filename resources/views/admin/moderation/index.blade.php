@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="container py-4">
@@ -34,7 +34,7 @@
                             <td>{{ $video->user->name ?? 'Unknown' }}</td>
                             <td>
                                 <span class="badge bg-{{ $video->status === 'approved' ? 'success' : ($video->status === 'pending' ? 'warning' : 'danger') }}">
-                                    {{ ucfirst($video->status) }}
+                                    {{ ucfirst($video->status->value) }}
                                 </span>
                             </td>
                             <td>
