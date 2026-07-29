@@ -41,6 +41,11 @@ class WatchHistoryService
             ->paginate($perPage);
     }
 
+    public function getUserHistory(int $userId, int $perPage = 20): LengthAwarePaginator
+    {
+        return $this->getHistory($userId, $perPage);
+    }
+
     public function getContinueWatching(int $userId, int $limit = 10)
     {
         return $this->watchHistory->where('user_id', $userId)

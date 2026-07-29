@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-4">
     <div class="mb-4">
-        <h4 class="fw-bold mb-1"><i class="bi bi-heart-fill text-danger me-2"></i>Favorite Videos</h4>
+        <h4 class="fw-bold mb-1 text-white"><i class="bi bi-heart-fill text-danger me-2"></i>Favorite Videos</h4>
         <p class="text-muted small mb-0">Videos you have bookmarked to watch later or save</p>
     </div>
 
@@ -12,13 +12,13 @@
             @foreach($favorites as $fav)
                 @if($fav->video)
                     <div class="col-xl-3 col-lg-4 col-md-6" id="favorite-card-{{ $fav->video_id }}">
-                        <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden position-relative">
+                        <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden position-relative" style="background-color: var(--yt-dark-card); border: 1px solid var(--yt-border) !important;">
                             <a href="{{ route('watch', $fav->video->slug) }}">
                                 <img src="{{ asset($fav->video->thumbnail ?? 'images/default-thumbnail.jpg') }}" class="card-img-top" alt="" style="aspect-ratio: 16/9; object-fit: cover;">
                             </a>
                             <div class="card-body p-3">
                                 <h6 class="fw-bold card-title text-truncate mb-1">
-                                    <a href="{{ route('watch', $fav->video->slug) }}" class="text-dark text-decoration-none">{{ $fav->video->title }}</a>
+                                    <a href="{{ route('watch', $fav->video->slug) }}" class="text-light text-decoration-none">{{ $fav->video->title }}</a>
                                 </h6>
                                 <p class="text-muted small mb-2">{{ $fav->video->user?->full_name }}</p>
                                 <div class="d-flex justify-content-between align-items-center">

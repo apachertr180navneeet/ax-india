@@ -11,11 +11,17 @@ class FavoriteService
 {
     public function __construct(private Favorite $favorite) {}
 
+    private function resolveUserId($user): int
+    {
+        return is_object($user) ? $user->id : (int) $user;
+    }
+
     public function addFavorite($user, int $videoId): Favorite
     {
+        $userId = $this->resolveUserId($user);
         try {
-            return DB::transaction(function () use ($user, $videoId) {
-                $existing = $this->favorite->where('user_id', $user->id)
+            return DB::transaction(function () use ($userId, $videoId) {
+                $existing = $this->favorite->where('user_id', $userId)
                     ->where('video_id', $videoId)
                     ->first();
 
@@ -24,11 +30,11 @@ class FavoriteService
                 }
 
                 $favorite = $this->favorite->create([
-                    'user_id' => $user->id,
+                    'user_id' => $userId,
                     'video_id' => $videoId,
                 ]);
 
-                Log::info('Video favorited', ['user_id' => $user->id, 'video_id' => $videoId]);
+                Log::info('Video favorited', ['user_id' => $userId, 'video_id' => $videoId]);
 
                 return $favorite;
             });
@@ -40,13 +46,14 @@ class FavoriteService
 
     public function removeFavorite($user, int $videoId): bool
     {
+        $userId = $this->resolveUserId($user);
         try {
-            return DB::transaction(function () use ($user, $videoId) {
-                $result = $this->favorite->where('user_id', $user->id)
+            return DB::transaction(function () use ($userId, $videoId) {
+                $result = $this->favorite->where('user_id', $userId)
                     ->where('video_id', $videoId)
                     ->delete();
 
-                Log::info('Video unfavorited', ['user_id' => $user->id, 'video_id' => $videoId]);
+                Log::info('Video unfavorited', ['user_id' => $userId, 'video_id' => $videoId]);
 
                 return (bool) $result;
             });
@@ -64,25 +71,40 @@ class FavoriteService
             ->paginate($perPage);
     }
 
+    public function getUserFavorites(int $userId, int $perPage = 20): LengthAwarePaginator
+    {
+        return $this->getFavorites($userId, $perPage);
+    }
+
     public function isFavorited($user, int $videoId): bool
     {
-        return $this->favorite->where('user_id', $user->id)
+        $userId = $this->resolveUserId($user);
+        return $this->favorite->where('user_id', $userId)
             ->where('video_id', $videoId)
             ->exists();
     }
 
     public function toggleFavorite($user, int $videoId): array
     {
-        $existing = $this->favorite->where('user_id', $user->id)
+        $userId = $this->resolveUserId($user);
+        $existing = $this->favorite->where('user_id', $userId)
             ->where('video_id', $videoId)
             ->first();
 
         if ($existing) {
-            $this->removeFavorite($user, $videoId);
-            return ['favorited' => false];
+            $this->removeFavorite($userId, $videoId);
+            return [
+                'favorited' => false,
+                'is_favorite' => false,
+                'message' => 'Removed from favorites'
+            ];
         }
 
-        $this->addFavorite($user, $videoId);
-        return ['favorited' => true];
+        $this->addFavorite($userId, $videoId);
+        return [
+            'favorited' => true,
+            'is_favorite' => true,
+            'message' => 'Added to favorites'
+        ];
     }
 }

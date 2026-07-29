@@ -4,7 +4,7 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h4 class="fw-bold mb-1"><i class="bi bi-clock-history text-primary me-2"></i>Watch History</h4>
+            <h4 class="fw-bold mb-1 text-white"><i class="bi bi-clock-history text-danger me-2"></i>Watch History</h4>
             <p class="text-muted small mb-0">Videos you have recently watched</p>
         </div>
         @if(count($history) > 0)
@@ -19,7 +19,7 @@
             @foreach($history as $item)
                 @if($item->video)
                     <div class="col-12" id="history-item-{{ $item->video_id }}">
-                        <div class="card border-0 shadow-sm rounded-3 p-3">
+                        <div class="card border-0 shadow-sm rounded-3 p-3" style="background-color: var(--yt-dark-card); border: 1px solid var(--yt-border) !important;">
                             <div class="row align-items-center">
                                 <div class="col-md-3 col-4">
                                     <a href="{{ route('watch', $item->video->slug) }}">
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-md-8 col-7">
                                     <h6 class="fw-bold mb-1">
-                                        <a href="{{ route('watch', $item->video->slug) }}" class="text-dark text-decoration-none">{{ $item->video->title }}</a>
+                                        <a href="{{ route('watch', $item->video->slug) }}" class="text-light text-decoration-none">{{ $item->video->title }}</a>
                                     </h6>
                                     <p class="text-muted small mb-1">{{ $item->video->user?->full_name }} · {{ number_format($item->video->views_count) }} views</p>
                                     <span class="badge bg-secondary text-light small">Watched {{ $item->updated_at?->diffForHumans() }}</span>

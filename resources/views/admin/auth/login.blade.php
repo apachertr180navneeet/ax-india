@@ -2,9 +2,9 @@
 @section('content')
 
 <div class="auth-wrapper" style="min-height: 100vh;">
-    <div class="auth-card text-center" style="max-width: 420px;">
-        <div class="logo-icon mx-auto mb-3" style="width: 56px; height: 56px; background: linear-gradient(135deg, var(--almond-silk), var(--almond-cream)); border: 1px solid var(--bone); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(213, 189, 175, 0.4);">
-            <i class="bi bi-shield-lock-fill fs-3" style="color: var(--text-primary);"></i>
+    <div class="auth-card text-center" style="max-width: 420px; margin: auto;">
+        <div class="logo-icon mx-auto mb-3" style="width: 54px; height: 54px; background: linear-gradient(135deg, var(--accent-red), #cc0029); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 0, 51, 0.4);">
+            <i class="bi bi-shield-lock-fill fs-3 text-white"></i>
         </div>
         <h2 class="auth-title">Admin Portal</h2>
         <p class="auth-subtitle mb-4">Sign in to manage {{ config('app.name') }}</p>
@@ -23,7 +23,7 @@
             <div class="auth-input-group text-start">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <label for="password" class="mb-0"><i class="bi bi-lock me-1"></i> Password</label>
-                    <a href="{{ route('admin.forget.password.get') }}" class="small" style="color: var(--text-primary);">Forgot?</a>
+                    <a href="{{ route('admin.forget.password.get') }}" class="small" style="color: var(--accent-blue);">Forgot?</a>
                 </div>
                 <input type="password" id="password" name="password" class="auth-input" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" required>
             </div>
