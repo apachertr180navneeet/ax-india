@@ -22,9 +22,6 @@ use App\Http\Controllers\Api\UserController;
 //     return $request->user();
 // });
 
-Route::get('/splash-screen', [AuthController::class, 'splashScreens']);
-Route::get('/timezones', [AuthController::class, 'getTimeZones']);
-
 Route::group(['prefix'=>'auth'], function(){
     Route::post('/send-phone-otp', [AuthController::class, 'sendPhoneOtp']);
     Route::post('/verify-phone-otp', [AuthController::class, 'verifyPhoneOtp']);

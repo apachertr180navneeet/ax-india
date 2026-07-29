@@ -15,28 +15,12 @@ use App\Models\PhoneOtp;
 use App\Models\AppUser;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\Filesystem;
-use App\Models\SplashScreen;
 
 
 
 class AuthController extends Controller
 {
     
-    public function splashScreens(){
-        $base_url = asset('/');
-        $splash_screens = SplashScreen::select('type','heading','content','image')->get();
-        foreach ($splash_screens as $key => $screen) {
-            if($screen['image']){
-                $screen['image'] = $base_url.$screen['image'];
-            }
-        }
-        return response()->json([
-            'status' => true,
-            'data' => $splash_screens,
-        ],200);
-
-    }
-
     public function sendPhoneOtp(Request $request){
         $data = $request->all();
         $validator = Validator::make($data, [
