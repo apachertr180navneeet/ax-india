@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{{asset('assets/admin/css/sweet-alert.css')}}" />
         @yield('style')
         <style>
-            body, .layout-wrapper, .layout-container, .layout-page {
+            body, .layout-wrapper, .layout-container, .layout-page, .content-wrapper {
                 background-color: var(--bg-main) !important;
                 color: var(--text-primary) !important;
             }

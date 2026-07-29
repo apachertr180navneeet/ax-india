@@ -104,6 +104,7 @@ Route::middleware(['auth'])->group(function () {
         // Creator Monetization Program
         Route::get('/monetization', [\App\Http\Controllers\MonetizationController::class, 'index'])->name('monetization');
         Route::post('/monetization/apply', [\App\Http\Controllers\MonetizationController::class, 'apply'])->name('monetization.apply');
+        Route::post('/monetization/payout-method', [\App\Http\Controllers\MonetizationController::class, 'updatePayoutMethod'])->name('monetization.payout');
     });
 });
 

@@ -5,7 +5,7 @@
     <div class="row g-4">
         <div class="col-md-4">
             <div class="card border-0 shadow-sm rounded-4 p-4">
-                <h5 class="fw-bold mb-3">Create Advertisement</h5>
+                <h5 class="fw-bold mb-3 text-white">Create Advertisement</h5>
                 <form action="{{ route('admin.advertisements.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -31,7 +31,7 @@
 
         <div class="col-md-8">
             <div class="card border-0 shadow-sm rounded-4 p-3">
-                <h5 class="fw-bold mb-3">Active Campaigns</h5>
+                <h5 class="fw-bold mb-3 text-white">Active Campaigns</h5>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead>
@@ -46,9 +46,9 @@
                         <tbody>
                             @forelse($ads as $ad)
                                 <tr>
-                                    <td class="fw-bold text-dark">{{ $ad->title }}</td>
+                                    <td class="fw-bold text-white">{{ $ad->title }}</td>
                                     <td><span class="badge bg-info">{{ strtoupper($ad->type) }}</span></td>
-                                    <td class="text-dark">{{ number_format($ad->impressions) }}</td>
+                                    <td class="text-white">{{ number_format($ad->impressions) }}</td>
                                     <td>
                                         <span class="badge bg-{{ $ad->is_active ? 'success' : 'secondary' }}">
                                             {{ $ad->is_active ? 'Active' : 'Disabled' }}

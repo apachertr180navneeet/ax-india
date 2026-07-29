@@ -88,15 +88,45 @@ a:hover {
 }
 
 .text-dark {
-    color: var(--text-primary) !important;
+    color: #ffffff !important;
 }
 
 .text-muted {
     color: #aaaaaa !important;
 }
 
-/* Dark Table Global Overrides */
-.table {
+.text-primary {
+    color: var(--accent-red) !important;
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: var(--yt-dark-card) !important;
+    border: 1px solid var(--yt-border) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 1.25rem !important;
+    box-shadow: var(--shadow-soft) !important;
+    transition: var(--transition) !important;
+}
+
+.stat-card:hover {
+    border-color: var(--yt-border-light) !important;
+    transform: translateY(-2px);
+}
+
+.stat-number {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0.4rem 0 !important;
+}
+
+/* Dark Table & Custom Table Global Overrides */
+.table, .table-custom {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    margin-bottom: 0 !important;
     --bs-table-bg: var(--yt-dark-card) !important;
     --bs-table-color: var(--text-primary) !important;
     --bs-table-hover-bg: var(--yt-card-hover) !important;
@@ -107,30 +137,121 @@ a:hover {
     border-color: var(--yt-border) !important;
 }
 
-.table th, .table td {
+.table th, .table td, .table-custom th, .table-custom td {
+    padding: 0.85rem 1rem !important;
+    vertical-align: middle !important;
     background-color: var(--yt-dark-card) !important;
     color: var(--text-primary) !important;
     border-color: var(--yt-border) !important;
+    border-bottom: 1px solid var(--yt-border) !important;
 }
 
-.table thead th {
+.table thead th, .table-custom thead th {
     background-color: #222222 !important;
     color: var(--text-secondary) !important;
-    border-bottom: 1px solid var(--yt-border) !important;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--yt-border-light) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
 }
 
-.table tbody tr:hover td {
+.table tbody tr:hover td, .table-custom tbody tr:hover td {
     background-color: var(--yt-card-hover) !important;
+}
+
+/* Badges */
+.badge-custom {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: var(--radius-pill) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+}
+
+.badge-active, .badge.bg-label-success, .badge.bg-success {
+    background-color: rgba(40, 167, 69, 0.18) !important;
+    color: #2ecc71 !important;
+    border: 1px solid rgba(40, 167, 69, 0.3) !important;
+}
+
+.badge-inactive, .badge.bg-label-warning, .badge.bg-warning {
+    background-color: rgba(255, 193, 7, 0.18) !important;
+    color: #ffc107 !important;
+    border: 1px solid rgba(255, 193, 7, 0.3) !important;
+}
+
+.badge.bg-label-danger, .badge.bg-danger {
+    background-color: rgba(220, 53, 69, 0.18) !important;
+    color: #ff4d4d !important;
+    border: 1px solid rgba(220, 53, 69, 0.3) !important;
+}
+
+.badge.bg-label-info, .badge.bg-info {
+    background-color: rgba(62, 166, 255, 0.18) !important;
+    color: #3ea6ff !important;
+    border: 1px solid rgba(62, 166, 255, 0.3) !important;
+}
+
+.badge.bg-label-primary, .badge.bg-primary {
+    background-color: rgba(255, 0, 51, 0.18) !important;
+    color: var(--accent-red) !important;
+    border: 1px solid rgba(255, 0, 51, 0.3) !important;
+}
+
+.badge.bg-secondary {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #e1e1e1 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* DataTables Dark Theme Fixes */
+.dataTables_wrapper {
+    color: var(--text-primary) !important;
+}
+
+.dataTables_wrapper .dataTables_length label,
+.dataTables_wrapper .dataTables_filter label {
+    color: var(--text-secondary) !important;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #222222 !important;
+    border: 1px solid var(--yt-border) !important;
+    color: #ffffff !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0.35rem 0.75rem !important;
+}
+
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    color: var(--text-secondary) !important;
+    margin-top: 1rem !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: var(--text-primary) !important;
+    background: var(--yt-elevated) !important;
+    border: 1px solid var(--yt-border) !important;
+    border-radius: 4px !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: var(--accent-red) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-red) !important;
 }
 
 .card {
     background-color: var(--yt-dark-card) !important;
-    border-color: var(--yt-border) !important;
+    border: 1px solid var(--yt-border) !important;
     color: var(--text-primary) !important;
+    border-radius: var(--radius-md) !important;
 }
 
 .dropdown-menu {

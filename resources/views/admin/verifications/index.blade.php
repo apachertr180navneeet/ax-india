@@ -4,7 +4,7 @@
 <div class="container py-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
-            <h2 class="fw-bold mb-0 text-dark">Creator Verification Requests</h2>
+            <h2 class="fw-bold mb-0 text-white">Creator Verification Requests</h2>
             <p class="text-muted">Review identity documents and approve badge applications</p>
         </div>
     </div>
@@ -31,11 +31,11 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3 fw-bold">
+                                    <div class="bg-danger bg-opacity-20 text-danger rounded-circle p-2 me-3 fw-bold">
                                         {{ strtoupper(substr($req->user->name ?? 'U', 0, 2)) }}
                                     </div>
                                     <div>
-                                        <div class="fw-bold text-dark">{{ $req->user->name ?? 'Unknown User' }}</div>
+                                        <div class="fw-bold text-white">{{ $req->user->name ?? 'Unknown User' }}</div>
                                         <div class="small text-muted">{{ $req->user->email ?? '' }}</div>
                                     </div>
                                 </div>

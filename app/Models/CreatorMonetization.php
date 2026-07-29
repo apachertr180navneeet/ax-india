@@ -14,7 +14,8 @@ class CreatorMonetization extends Model
         'status',
         'ad_revenue_share_percentage',
         'total_earnings',
-        'pending_payout',
+        'payout_threshold',
+        'tax_deduction_rate',
         'payout_method',
         'payout_details',
         'applied_at',
@@ -24,7 +25,9 @@ class CreatorMonetization extends Model
     protected $casts = [
         'ad_revenue_share_percentage' => 'decimal:2',
         'total_earnings' => 'decimal:2',
-        'pending_payout' => 'decimal:2',
+        'payout_threshold' => 'decimal:2',
+        'tax_deduction_rate' => 'decimal:2',
+        'payout_details' => 'array',
         'applied_at' => 'datetime',
         'approved_at' => 'datetime',
     ];

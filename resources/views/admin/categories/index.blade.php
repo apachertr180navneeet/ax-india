@@ -5,7 +5,7 @@
     <div class="row g-4">
         <div class="col-md-4">
             <div class="card border-0 shadow-sm rounded-4 p-4">
-                <h5 class="fw-bold mb-3">Add New Category</h5>
+                <h5 class="fw-bold mb-3 text-white">Add New Category</h5>
                 <form action="{{ route('admin.categories.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -23,7 +23,7 @@
 
         <div class="col-md-8">
             <div class="card border-0 shadow-sm rounded-4 p-3">
-                <h5 class="fw-bold mb-3">Categories</h5>
+                <h5 class="fw-bold mb-3 text-white">Categories</h5>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead>
@@ -38,8 +38,8 @@
                         <tbody>
                             @forelse($categories as $category)
                                 <tr>
-                                    <td><i class="{{ $category->icon ?? 'bi bi-folder' }} fs-5"></i></td>
-                                    <td class="fw-bold text-dark">{{ $category->name }}</td>
+                                    <td><i class="{{ $category->icon ?? 'bi bi-folder' }} fs-5 text-danger"></i></td>
+                                    <td class="fw-bold text-white">{{ $category->name }}</td>
                                     <td class="text-muted">{{ $category->slug }}</td>
                                     <td>{{ $category->videos_count }}</td>
                                     <td>

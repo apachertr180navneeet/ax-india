@@ -1,9 +1,9 @@
 @extends('admin.layouts.app') 
 @section('content')
 <div class="container-fluid flex-grow-1 container-p-y">
-    <h5 class="py-2 mb-2">
-        <span class="text-primary fw-light">Change Password</span>
-    </h5>
+    <h4 class="py-2 mb-2 text-white fw-bold">
+        <span>Change Password</span>
+    </h4>
     
     <div class="row">
         <div class="col-md-6">

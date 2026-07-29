@@ -12,8 +12,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('video_id')->nullable()->constrained()->nullOnDelete();
-            $table->enum('type', ['ad_revenue', 'video_share', 'performance_bonus', 'brand_collaboration', 'premium_content', 'live_gift', 'fan_subscription']);
+            $table->enum('type', ['ads', 'premium_membership', 'brand_sponsorship', 'fan_contribution', 'platform_incentive', 'ad_revenue', 'video_share', 'performance_bonus', 'brand_collaboration', 'premium_content', 'live_gift', 'fan_subscription'])->default('ads');
             $table->decimal('amount', 10, 2)->default(0.00);
+            $table->decimal('tax_deducted', 10, 2)->default(0.00);
+            $table->decimal('net_amount', 10, 2)->default(0.00);
             $table->string('description')->nullable();
             $table->enum('status', ['pending', 'credited', 'paid_out'])->default('pending');
             $table->timestamps();

@@ -12,9 +12,9 @@
 @endsection 
 @section('content')
 <div class="container-fluid flex-grow-1 container-p-y">
-    <h5 class="py-2 mb-2">
-        <span class="text-primary fw-light">My Profile</span>
-    </h5>
+    <h4 class="py-2 mb-2 text-white fw-bold">
+        <span>My Profile</span>
+    </h4>
     <div class="row">
         <div class="col-xl-6 col-lg-6">
             <div class="card profile-card">

@@ -14,12 +14,16 @@ class MonetizationEarning extends Model
         'video_id',
         'type',
         'amount',
+        'tax_deducted',
+        'net_amount',
         'description',
         'status',
     ];
 
     protected $casts = [
         'amount' => 'decimal:2',
+        'tax_deducted' => 'decimal:2',
+        'net_amount' => 'decimal:2',
     ];
 
     public function user()

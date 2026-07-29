@@ -14,9 +14,10 @@ return new class extends Migration
             $table->enum('status', ['ineligible', 'eligible', 'pending_approval', 'approved', 'suspended'])->default('ineligible');
             $table->decimal('ad_revenue_share_percentage', 5, 2)->default(55.00); // 55% creator share default
             $table->decimal('total_earnings', 12, 2)->default(0.00);
-            $table->decimal('pending_payout', 12, 2)->default(0.00);
-            $table->string('payout_method')->nullable(); // bank_transfer, paypal, upi
-            $table->text('payout_details')->nullable();
+            $table->decimal('payout_threshold', 10, 2)->default(100.00); // Minimum payout threshold e.g. $100 or ₹1000
+            $table->decimal('tax_deduction_rate', 5, 2)->default(10.00); // e.g. 10% TDS / withholding tax
+            $table->string('payout_method')->default('bank_transfer'); // bank_transfer, upi, paypal
+            $table->text('payout_details')->nullable(); // Account number, IFSC/SWIFT, Bank Name, PAN/Tax ID
             $table->timestamp('applied_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
