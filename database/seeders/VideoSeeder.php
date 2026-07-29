@@ -18,11 +18,13 @@ class VideoSeeder extends Seeder
         $categories = Category::all();
         $tags = Tag::all();
 
-        // 10 videos for admin (user id 1)
+        $adminUser = User::where('email', 'admin@axindia.com')->first() ?? $users->first();
+
+        // 10 videos for admin user
         for ($i = 1; $i <= 10; $i++) {
             $title = fake()->unique()->sentence(6);
             $video = Video::create([
-                'user_id' => 1,
+                'user_id' => $adminUser->id,
                 'title' => $title,
                 'slug' => Str::slug($title) . '-' . uniqid(),
                 'description' => fake()->paragraphs(3, true),

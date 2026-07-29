@@ -24,8 +24,8 @@ class VideoWatchController extends Controller
         $this->videoService->updateViews($video->id);
 
         $comments = $this->commentService->getVideoComments($video->id, 10);
-        $related = $this->videoService->getRelatedVideos($video, 8);
+        $relatedVideos = $this->videoService->getRelatedVideos($video, 8);
 
-        return view('web.watch.show', compact('video', 'comments', 'related'));
+        return view('web.videos.watch', compact('video', 'comments', 'relatedVideos'));
     }
 }
