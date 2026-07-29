@@ -58,8 +58,7 @@ class VideoRepository
             ->with(['user', 'category'])
             ->orderBy('views_count', 'desc')
             ->orderBy('likes_count', 'desc')
-            ->limit($limit)
-            ->get();
+            ->paginate($limit);
     }
 
     public function getRelated(Video $video, int $limit)

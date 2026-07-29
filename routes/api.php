@@ -52,8 +52,8 @@ Route::prefix('v1')->group(function () {
         Route::put('/videos/{id}', [VideoController::class, 'update']);
         Route::delete('/videos/{id}', [VideoController::class, 'destroy']);
         Route::post('/videos/{id}/like', [VideoController::class, 'like']);
-        Route::post('/videos/{id}/view', [VideoController::class, 'view']);
     });
+    Route::post('/videos/{id}/view', [VideoController::class, 'view']);
 
     Route::get('/videos/{videoId}/comments', [CommentController::class, 'index']);
     Route::middleware('auth:sanctum')->group(function () {
@@ -88,7 +88,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/history', [WatchHistoryController::class, 'index']);
         Route::post('/history/{videoId}', [WatchHistoryController::class, 'track']);
-        Route::delete('/history', [WatchHistoryController::class, 'clear']);
+        Route::delete('/history', [WatchHistoryController::class, 'clearAll']);
         Route::delete('/history/{videoId}', [WatchHistoryController::class, 'remove']);
         Route::get('/history/continue-watching', [WatchHistoryController::class, 'continueWatching']);
     });

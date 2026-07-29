@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('area')->default('');
             $table->string('city')->default('');
             $table->string('state')->default('');
-            $table->string('country');
+            $table->string('country')->default('');
             $table->integer('country_code')->default(61);
             $table->string('zipcode')->default('');
             $table->string('latitude')->default('');

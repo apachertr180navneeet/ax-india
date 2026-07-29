@@ -17,8 +17,8 @@ class WatchHistory extends Model
     protected $casts = [
         'watched_at' => 'datetime',
         'completed' => 'bool',
-        'resume_at' => 'decimal:8,2',
-        'watch_duration' => 'decimal:10,2',
+        'resume_at' => 'float',
+        'watch_duration' => 'float',
     ];
 
     public function user()

@@ -76,7 +76,10 @@ class VideoService
     {
         try {
             return DB::transaction(function () use ($id, $user, $data, $thumbnail) {
-                $video = $this->video->where('user_id', $user->id)->findOrFail($id);
+                $video = $this->video->findOrFail($id);
+                if ($video->user_id !== $user->id) {
+                    abort(403, 'Forbidden');
+                }
 
                 $updateData = collect($data)->except(['tags', 'thumbnail'])->toArray();
 
