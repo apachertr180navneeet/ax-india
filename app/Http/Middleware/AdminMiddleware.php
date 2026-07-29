@@ -4,27 +4,24 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
-use Auth;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()) {
-            $user = Auth::user();
-            if($user->role == "admin") {
-                return $next($request);
-            }else{
-                return redirect()->back();
-            }
-        }else{
-            return redirect()->route('admin.login');
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
+            return $next($request);
         }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized. Admin access required.',
+            ], 403);
+        }
+
+        return redirect()->route('admin.login')->withErrors(['error' => 'Admin access required.']);
     }
 }

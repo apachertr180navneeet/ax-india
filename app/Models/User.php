@@ -9,11 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable ,SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -65,4 +66,48 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'subscriber_id');
+    }
+
+    public function subscribers()
+    {
+        return $this->hasMany(Subscription::class, 'creator_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function playlists()
+    {
+        return $this->hasMany(Playlist::class);
+    }
+
+    public function watchHistories()
+    {
+        return $this->hasMany(WatchHistory::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function videoLikes()
+    {
+        return $this->hasMany(VideoLike::class);
+    }
 }

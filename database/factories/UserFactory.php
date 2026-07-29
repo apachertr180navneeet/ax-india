@@ -2,43 +2,67 @@
 
 namespace Database\Factories;
 
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
     protected static ?string $password;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $firstName = fake()->firstName();
+        $lastName = fake()->lastName();
+
         return [
-            'name' => fake()->name(),
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $firstName . ' ' . $lastName,
+            'slug' => Str::slug($firstName . ' ' . $lastName . '-' . uniqid()),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'phone' => fake()->unique()->numerify('##########'),
             'password' => static::$password ??= Hash::make('password'),
+            'email_verified_at' => now(),
+            'role' => 'user',
+            'status' => 'active',
+            'address' => fake()->address(),
+            'area' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'state' => fake()->state(),
+            'country' => fake()->country(),
+            'country_code' => 1,
+            'zipcode' => fake()->postcode(),
+            'latitude' => fake()->latitude(),
+            'longitude' => fake()->longitude(),
+            'timezone' => fake()->timezone(),
+            'avatar' => '',
+            'bio' => '',
+            'device_token' => '',
+            'device_type' => 'ios',
             'remember_token' => Str::random(10),
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'admin',
+        ]);
+    }
+
+    public function configure(): static
+    {
+        return $this->afterCreating(function ($user) {
+            Profile::factory()->create(['user_id' => $user->id]);
+        });
     }
 }
