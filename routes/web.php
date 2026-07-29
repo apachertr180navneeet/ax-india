@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\SearchWebController;
 use App\Http\Controllers\Web\NotificationWebController;
 use App\Http\Controllers\Web\DownloadController;
 use App\Http\Controllers\Web\ShortsController;
+use App\Http\Controllers\Web\AuthWebController;
 use App\Http\Controllers\Web\Creator\CreatorDashboardController;
 use App\Http\Controllers\Web\Creator\CreatorAnalyticsController;
 use App\Http\Controllers\Web\Creator\CreatorSubscriberController;
@@ -35,6 +36,16 @@ Route::get('/channel/{username}', [ChannelController::class, 'show'])->name('cha
 Route::get('/search', [SearchWebController::class, 'index'])->name('search');
 Route::get('/download/{id}', [DownloadController::class, 'download'])->name('videos.download');
 Route::get('/shorts', [ShortsController::class, 'index'])->name('shorts.index');
+
+// Guest Web Routes (Login, Register)
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthWebController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthWebController::class, 'login']);
+    Route::get('/register', [AuthWebController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthWebController::class, 'register']);
+});
+
+Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Authenticated Web Routes
 Route::middleware(['auth'])->group(function () {

@@ -38,7 +38,7 @@
                                 <span class="d-none d-lg-inline">{{ Auth::user()->first_name }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route('channel', Auth::id()) }}"><i class="fas fa-user me-2"></i>My Channel</a></li>
+                                <li><a class="dropdown-item" href="{{ route('channel', Auth::user()->profile?->username ?? Auth::user()->id) }}"><i class="fas fa-user me-2"></i>My Channel</a></li>
                                 <li><a class="dropdown-item" href="{{ route('settings') }}"><i class="fas fa-cog me-2"></i>Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>

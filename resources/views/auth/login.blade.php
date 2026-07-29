@@ -26,7 +26,7 @@
                     </form>
                     <div class="text-center mt-3">
                         <p class="mb-1 small">Don't have an account? <a href="{{ route('register') }}">Register</a></p>
-                        <p class="mb-0 small"><a href="{{ route('password.request') }}">Forgot password?</a></p>
+
                     </div>
                 </div>
             </div>

@@ -12,11 +12,5 @@
     </div>
 
     <div class="nav-actions">
-        <a href="{{ route('admin.login') }}" class="btn-custom btn-outline-custom">
-            <i class="bi bi-person-lock"></i> Admin Portal
-        </a>
-        <button class="btn-custom btn-primary-custom">
-            <i class="bi bi-cloud-upload-fill"></i> Upload Video
-        </button>
     </div>
 </header>
