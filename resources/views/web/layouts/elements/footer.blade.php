@@ -7,7 +7,7 @@
                 </div>
                 <span>AX-India</span>
             </div>
-            <p>Elevating digital stories with timeless elegance, modern performance, and seamless streaming experience.</p>
+            <p>Empowering creators with ultra-fast video streaming, dynamic monetization tools, and modern viewing experiences.</p>
         </div>
 
         <div class="footer-column">
@@ -42,6 +42,6 @@
     </div>
 
     <div class="footer-bottom">
-        &copy; {{ date('Y') }} AX-India Video Platform. All rights reserved. Crafted with Parchment & Linen Elegance.
+        &copy; {{ date('Y') }} AX-India Video Platform. All rights reserved. Built with YouTube-Inspired Dark Theme.
     </div>
 </footer>

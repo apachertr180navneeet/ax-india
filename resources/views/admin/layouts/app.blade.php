@@ -28,29 +28,35 @@
         @yield('style')
         <style>
             body, .layout-wrapper, .layout-container, .layout-page {
-                background-color: var(--parchment) !important;
+                background-color: var(--bg-main) !important;
+                color: var(--text-primary) !important;
             }
             .bg-menu-theme {
-                background-color: var(--linen) !important;
-                border-right: 1px solid var(--bone) !important;
+                background-color: var(--yt-dark-card) !important;
+                border-right: 1px solid var(--yt-border) !important;
             }
             .bg-menu-theme .menu-link, .bg-menu-theme .menu-header-text {
                 color: var(--text-primary) !important;
             }
             .bg-menu-theme .menu-item.active > .menu-link {
-                background-color: var(--almond-silk) !important;
-                color: var(--text-primary) !important;
+                background-color: var(--accent-red) !important;
+                color: #ffffff !important;
             }
             .card {
-                background-color: var(--linen) !important;
-                border: 1px solid var(--bone) !important;
+                background-color: var(--yt-dark-card) !important;
+                border: 1px solid var(--yt-border) !important;
                 box-shadow: var(--shadow-soft) !important;
                 border-radius: var(--radius-md) !important;
+                color: var(--text-primary) !important;
             }
             .navbar-detached {
                 background-color: var(--bg-glass) !important;
-                border: 1px solid var(--bone) !important;
+                border: 1px solid var(--yt-border) !important;
                 backdrop-filter: blur(16px);
+            }
+            .table-hover tbody tr:hover {
+                background-color: var(--yt-card-hover) !important;
+                color: var(--text-primary) !important;
             }
         </style>
         

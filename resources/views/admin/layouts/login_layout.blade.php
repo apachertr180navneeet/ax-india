@@ -25,27 +25,30 @@
         @yield('style')
         <style>
             body {
-                background: linear-gradient(135deg, var(--parchment), var(--linen)) !important;
+                background: var(--bg-main) !important;
+                color: var(--text-primary) !important;
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
             .card {
-                background-color: var(--linen) !important;
-                border: 1px solid var(--bone) !important;
-                box-shadow: 0 15px 35px rgba(43, 37, 35, 0.08) !important;
+                background-color: var(--yt-dark-card) !important;
+                border: 1px solid var(--yt-border) !important;
+                box-shadow: var(--shadow-soft) !important;
                 border-radius: var(--radius-md) !important;
+                color: var(--text-primary) !important;
             }
             .btn-primary {
-                background-color: var(--almond-silk) !important;
-                border-color: var(--bone) !important;
-                color: var(--text-primary) !important;
+                background-color: var(--accent-red) !important;
+                border-color: var(--accent-red) !important;
+                color: #ffffff !important;
                 font-weight: 700;
             }
             .btn-primary:hover {
-                background-color: var(--almond-cream) !important;
-                color: var(--text-primary) !important;
+                background-color: var(--accent-red-hover) !important;
+                border-color: var(--accent-red-hover) !important;
+                color: #ffffff !important;
             }
         </style>
         

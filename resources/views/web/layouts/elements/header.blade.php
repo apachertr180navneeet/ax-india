@@ -24,15 +24,15 @@
                     @if(auth()->user()->avatar)
                         <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="{{ auth()->user()->first_name }}" class="rounded-circle" width="36" height="36" style="object-fit: cover;">
                     @else
-                        <div class="avatar-placeholder rounded-circle text-white fw-bold d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background: linear-gradient(135deg, #d5bdaf, #e3d5ca); color: #333 !important; font-size: 0.9rem;">
+                        <div class="avatar-placeholder rounded-circle text-white fw-bold d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent-red), #cc0029); color: #fff !important; font-size: 0.9rem;">
                             {{ strtoupper(substr(auth()->user()->first_name ?? auth()->user()->full_name ?? 'U', 0, 1)) }}
                         </div>
                     @endif
-                    <span class="user-name fw-medium d-none d-sm-inline-block text-dark small">{{ auth()->user()->first_name ?? auth()->user()->full_name ?? 'Account' }}</span>
+                    <span class="user-name fw-medium d-none d-sm-inline-block text-light small">{{ auth()->user()->first_name ?? auth()->user()->full_name ?? 'Account' }}</span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end shadow-sm rounded-4 border-0 py-2 mt-2" aria-labelledby="userMenuDropdown" style="min-width: 220px; font-size: 0.9rem;">
-                    <li class="px-3 py-2 border-bottom">
-                        <div class="fw-bold text-dark text-truncate">{{ auth()->user()->full_name ?? auth()->user()->first_name }}</div>
+                <ul class="dropdown-menu dropdown-menu-end shadow-lg rounded-4 border-0 py-2 mt-2" aria-labelledby="userMenuDropdown" style="min-width: 220px; font-size: 0.9rem;">
+                    <li class="px-3 py-2 border-bottom border-secondary">
+                        <div class="fw-bold text-light text-truncate">{{ auth()->user()->full_name ?? auth()->user()->first_name }}</div>
                         <div class="text-muted small text-truncate">{{ auth()->user()->email }}</div>
                     </li>
                     <li><a class="dropdown-item py-2 px-3 d-flex align-items-center gap-2" href="{{ route('creator.dashboard') }}"><i class="bi bi-speedometer2 text-primary"></i> Creator Studio</a></li>

@@ -17,22 +17,22 @@
 <div class="hero-featured">
     <div class="hero-card">
         <div class="hero-content">
-            <span class="hero-tag"><i class="bi bi-star-fill"></i> Premier Feature</span>
-            <h1 class="hero-title">Timeless Architecture & Ancient Manuscripts</h1>
-            <p class="hero-desc">Explore the serene elegance of heritage craft, subtle storytelling, and atmospheric visual journeys curated in Parchment & Linen tones.</p>
+            <span class="hero-tag"><i class="bi bi-fire"></i> Premier Spotlight</span>
+            <h1 class="hero-title">High-Definition Visual Masterpieces & Creator Stories</h1>
+            <p class="hero-desc">Experience ultra-smooth streaming, curated high-definition video collections, dynamic channel feeds, and creator studios in YouTube Dark style.</p>
             <div style="display: flex; gap: 1rem; align-items: center;">
                 <button class="btn-custom btn-primary-custom" onclick="alert('Playing feature video...')">
                     <i class="bi bi-play-fill" style="font-size: 1.2rem;"></i> Watch Premier Now
                 </button>
                 <button class="btn-custom btn-outline-custom">
-                    <i class="bi bi-bookmark-plus"></i> Add to Watchlist
+                    <i class="bi bi-bookmark-plus"></i> Watchlist
                 </button>
             </div>
         </div>
         <div class="hero-media">
             <img src="{{ asset('assets/web/img/hero.png') }}" alt="Featured Video">
             <div class="play-overlay-btn" onclick="alert('Playing feature video...')">
-                <i class="bi bi-play-fill" style="font-size: 2.2rem; color: var(--text-primary); margin-left: 4px;"></i>
+                <i class="bi bi-play-fill" style="font-size: 2.2rem; color: #ffffff; margin-left: 4px;"></i>
             </div>
         </div>
     </div>
