@@ -5,15 +5,16 @@
         <div class="col-lg-10">
             <h4 class="fw-bold mb-4"><i class="fas fa-cog me-2"></i>Settings</h4>
             <ul class="nav nav-tabs mb-4" id="settingsTabs" role="tablist">
-                <li class="nav-item"><button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"><i class="fas fa-user me-1"></i>Profile</button></li>
-                <li class="nav-item"><button class="nav-link" id="avatar-tab" data-bs-toggle="tab" data-bs-target="#avatar" type="button"><i class="fas fa-camera me-1"></i>Avatar & Cover</button></li>
-                <li class="nav-item"><button class="nav-link" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy" type="button"><i class="fas fa-shield-alt me-1"></i>Privacy</button></li>
-                <li class="nav-item"><button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button"><i class="fas fa-bell me-1"></i>Notifications</button></li>
+                <li class="nav-item"><button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"><i class="bi bi-person me-1"></i>Profile</button></li>
+                <li class="nav-item"><button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" type="button"><i class="bi bi-key me-1"></i>Password Security</button></li>
+                <li class="nav-item"><button class="nav-link" id="avatar-tab" data-bs-toggle="tab" data-bs-target="#avatar" type="button"><i class="bi bi-camera me-1"></i>Avatar & Cover</button></li>
+                <li class="nav-item"><button class="nav-link" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy" type="button"><i class="bi bi-shield-lock me-1"></i>Privacy</button></li>
+                <li class="nav-item"><button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button"><i class="bi bi-bell me-1"></i>Notifications</button></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel">
                     <div class="card border-0 shadow-sm p-4">
-                        <form action="{{ route('settings.profile.update') }}" method="POST">
+                        <form action="{{ route('settings.update') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row g-3">
@@ -61,11 +62,34 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="tab-pane fade" id="password" role="tabpanel">
+                    <div class="card border-0 shadow-sm p-4">
+                        <h6 class="fw-semibold mb-3"><i class="bi bi-shield-lock me-2 text-primary"></i>Change Password</h6>
+                        <form action="{{ route('settings.password.update') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Current Password</label>
+                                <input type="password" name="current_password" class="form-control" placeholder="Enter current password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">New Password</label>
+                                <input type="password" name="new_password" class="form-control" placeholder="Enter new password (min. 8 characters)" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Confirm New Password</label>
+                                <input type="password" name="new_password_confirmation" class="form-control" placeholder="Confirm new password" required>
+                            </div>
+                            <button type="submit" class="btn-custom btn-primary-custom px-4"><i class="bi bi-check-circle me-1"></i>Update Password</button>
+                        </form>
+                    </div>
+                </div>
                 <div class="tab-pane fade" id="avatar" role="tabpanel">
                     <div class="card border-0 shadow-sm p-4">
                         <h6 class="fw-semibold mb-3">Current Avatar</h6>
                         <img src="{{ asset($profile->avatar ?? 'images/default-avatar.png') }}" class="rounded-circle mb-3" width="100" height="100" alt="">
-                        <form action="{{ route('settings.avatar.update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
@@ -77,7 +101,7 @@
                         <hr>
                         <h6 class="fw-semibold mb-3">Current Cover</h6>
                         <img src="{{ asset($profile->cover ?? 'images/default-cover.jpg') }}" class="img-fluid rounded mb-3" style="max-height:150px;" alt="">
-                        <form action="{{ route('settings.cover.update') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
@@ -90,7 +114,7 @@
                 </div>
                 <div class="tab-pane fade" id="privacy" role="tabpanel">
                     <div class="card border-0 shadow-sm p-4">
-                        <form action="{{ route('settings.privacy.update') }}" method="POST">
+                        <form action="{{ route('settings.update') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-check form-switch mb-3">
@@ -111,7 +135,7 @@
                 </div>
                 <div class="tab-pane fade" id="notifications" role="tabpanel">
                     <div class="card border-0 shadow-sm p-4">
-                        <form action="{{ route('settings.notifications.update') }}" method="POST">
+                        <form action="{{ route('settings.update') }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-check form-switch mb-3">

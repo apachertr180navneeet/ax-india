@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     // Profile & Settings
     Route::get('/settings', [ProfileWebController::class, 'settings'])->name('settings');
     Route::put('/settings', [ProfileWebController::class, 'updateSettings'])->name('settings.update');
+    Route::put('/settings/password', [ProfileWebController::class, 'updatePassword'])->name('settings.password.update');
     Route::get('/profile/{username}', [ProfileWebController::class, 'show'])->name('profile.show');
 
     // Watch History

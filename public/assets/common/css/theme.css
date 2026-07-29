@@ -756,6 +756,8 @@ a:hover {
     transition: var(--transition);
 }
 
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
+
 .auth-input:focus {
     background-color: #ffffff;
     border-color: var(--almond-silk);
@@ -782,7 +784,18 @@ a:hover {
     border-color: var(--bone) !important;
 }
 
-.table th, .table td {
+.table th {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--text-secondary) !important;
+    border-color: var(--bone) !important;
+}
+
+.table td {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     color: var(--text-primary) !important;
     border-color: var(--bone) !important;
 }
@@ -813,4 +826,50 @@ a:hover {
     background-color: var(--linen) !important;
     color: var(--text-primary) !important;
     border-color: var(--bone) !important;
+}
+
+/* Stat Box Icon Styles */
+.stat-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--almond-silk);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(43, 37, 35, 0.08);
+}
+
+.stat-icon-wrapper i {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* Soft Badges */
+.badge.bg-success {
+    background-color: rgba(46, 125, 50, 0.15) !important;
+    color: #2e7d32 !important;
+    border: 1px solid rgba(46, 125, 50, 0.3) !important;
+    font-weight: 600 !important;
+    padding: 0.45em 0.85em !important;
+    border-radius: 50px !important;
+}
+
+.badge.bg-warning {
+    background-color: rgba(230, 81, 0, 0.15) !important;
+    color: #e65100 !important;
+    border: 1px solid rgba(230, 81, 0, 0.3) !important;
+    font-weight: 600 !important;
+    padding: 0.45em 0.85em !important;
+    border-radius: 50px !important;
+}
+
+.badge.bg-danger {
+    background-color: rgba(198, 40, 40, 0.15) !important;
+    color: #c62828 !important;
+    border: 1px solid rgba(198, 40, 40, 0.3) !important;
+    font-weight: 600 !important;
+    padding: 0.45em 0.85em !important;
+    border-radius: 50px !important;
 }

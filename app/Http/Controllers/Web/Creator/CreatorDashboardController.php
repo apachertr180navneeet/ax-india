@@ -18,7 +18,7 @@ class CreatorDashboardController extends Controller
         $totalVideos = Video::where('user_id', $user->id)->count();
         $totalViews = Video::where('user_id', $user->id)->sum('views_count');
         $totalLikes = Video::where('user_id', $user->id)->sum('likes_count');
-        $totalSubscribers = Subscription::where('channel_id', $user->id)->count();
+        $totalSubscribers = Subscription::where('creator_id', $user->id)->count();
         $totalEarnings = Video::where('user_id', $user->id)->sum('earnings');
 
         // Recent Uploads

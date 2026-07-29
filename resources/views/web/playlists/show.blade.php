@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container py-4">
-    <div class="card border-0 shadow-sm rounded-4 mb-4 p-4 bg-primary text-white">
-        <h4 class="fw-bold mb-1">{{ $playlist->title }}</h4>
-        <p class="mb-2 opacity-75">{{ $playlist->description ?? 'No description' }}</p>
-        <span class="badge bg-light text-primary align-self-start text-capitalize">{{ $playlist->visibility }} · {{ count($playlist->videos) }} videos</span>
+    <div class="card border-0 shadow-sm rounded-4 mb-4 p-4" style="background: linear-gradient(135deg, var(--almond-silk), var(--almond-cream)); border: 1px solid var(--bone) !important;">
+        <h4 class="fw-bold mb-1 text-dark serif-font">{{ $playlist->title }}</h4>
+        <p class="mb-2 text-dark opacity-75">{{ $playlist->description ?? 'No description' }}</p>
+        <span class="badge bg-white text-dark align-self-start text-capitalize border fw-semibold">{{ $playlist->visibility }} · {{ count($playlist->videos) }} videos</span>
     </div>
 
     @if(count($playlist->videos) > 0)

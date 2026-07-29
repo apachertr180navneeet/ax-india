@@ -13,7 +13,7 @@ class CreatorSubscriberController extends Controller
     {
         $user = Auth::user();
 
-        $subscribers = Subscription::where('channel_id', $user->id)
+        $subscribers = Subscription::where('creator_id', $user->id)
             ->with('subscriber')
             ->latest()
             ->paginate(15);

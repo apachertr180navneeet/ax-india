@@ -1,18 +1,18 @@
-@extends('admin.layouts.app')
+@extends('web.layouts.app')
 
 @section('content')
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="fw-bold mb-0">Creator Dashboard</h2>
-            <p class="text-secondary">Manage your channel, track performance and live streams</p>
+            <h2 class="serif-font fw-bold mb-1 text-dark">Creator Dashboard</h2>
+            <p class="text-muted mb-0">Manage your channel, track performance and live streams</p>
         </div>
-        <div>
-            <a href="{{ route('videos.upload') }}" class="btn btn-danger me-2">
-                <i class="bi bi-upload me-1"></i> Upload Video
+        <div class="d-flex gap-2">
+            <a href="{{ route('videos.upload') }}" class="btn-custom btn-primary-custom">
+                <i class="bi bi-cloud-arrow-up me-1"></i> Upload Video
             </a>
-            <a href="{{ route('creator.live') }}" class="btn btn-outline-danger">
-                <i class="bi bi-broadcast me-1"></i> Go Live
+            <a href="{{ route('creator.live') }}" class="btn-custom btn-outline-custom">
+                <i class="bi bi-broadcast me-1 text-danger"></i> Go Live
             </a>
         </div>
     </div>
@@ -20,53 +20,53 @@
     <!-- Quick Stats Cards -->
     <div class="row g-3 mb-4">
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
                 <div class="d-flex align-items-center">
-                    <div class="bg-danger bg-opacity-25 text-danger rounded-circle p-3 me-3">
-                        <i class="bi bi-play-btn fs-4"></i>
+                    <div class="stat-icon-wrapper me-3">
+                        <i class="bi bi-play-btn-fill"></i>
                     </div>
                     <div>
-                        <div class="text-muted small">Total Videos</div>
-                        <h4 class="fw-bold mb-0 text-dark">{{ number_format($totalVideos) }}</h4>
+                        <div class="text-muted small fw-semibold">Total Videos</div>
+                        <h3 class="fw-bold mb-0 text-dark">{{ number_format($totalVideos) }}</h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
                 <div class="d-flex align-items-center">
-                    <div class="bg-primary bg-opacity-25 text-primary rounded-circle p-3 me-3">
-                        <i class="bi bi-eye fs-4"></i>
+                    <div class="stat-icon-wrapper me-3">
+                        <i class="bi bi-eye-fill"></i>
                     </div>
                     <div>
-                        <div class="text-muted small">Total Views</div>
-                        <h4 class="fw-bold mb-0 text-dark">{{ number_format($totalViews) }}</h4>
+                        <div class="text-muted small fw-semibold">Total Views</div>
+                        <h3 class="fw-bold mb-0 text-dark">{{ number_format($totalViews) }}</h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
                 <div class="d-flex align-items-center">
-                    <div class="bg-warning bg-opacity-25 text-warning rounded-circle p-3 me-3">
-                        <i class="bi bi-people fs-4"></i>
+                    <div class="stat-icon-wrapper me-3">
+                        <i class="bi bi-people-fill"></i>
                     </div>
                     <div>
-                        <div class="text-muted small">Subscribers</div>
-                        <h4 class="fw-bold mb-0 text-dark">{{ number_format($totalSubscribers) }}</h4>
+                        <div class="text-muted small fw-semibold">Subscribers</div>
+                        <h3 class="fw-bold mb-0 text-dark">{{ number_format($totalSubscribers) }}</h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
                 <div class="d-flex align-items-center">
-                    <div class="bg-success bg-opacity-25 text-success rounded-circle p-3 me-3">
-                        <i class="bi bi-currency-dollar fs-4"></i>
+                    <div class="stat-icon-wrapper me-3">
+                        <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div>
-                        <div class="text-muted small">Estimated Revenue</div>
-                        <h4 class="fw-bold mb-0 text-dark">${{ number_format($totalEarnings, 2) }}</h4>
+                        <div class="text-muted small fw-semibold">Estimated Revenue</div>
+                        <h3 class="fw-bold mb-0 text-dark">${{ number_format($totalEarnings, 2) }}</h3>
                     </div>
                 </div>
             </div>
@@ -100,8 +100,8 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="badge bg-{{ $video->status === 'approved' ? 'success' : ($video->status === 'pending' ? 'warning' : 'danger') }}">
-                                    {{ ucfirst($video->status) }}
+                                <span class="badge bg-{{ ($video->status->value ?? $video->status) === 'approved' ? 'success' : (($video->status->value ?? $video->status) === 'pending' ? 'warning' : 'danger') }}">
+                                    {{ ucfirst($video->status->value ?? $video->status) }}
                                 </span>
                             </td>
                             <td>{{ number_format($video->views_count) }}</td>

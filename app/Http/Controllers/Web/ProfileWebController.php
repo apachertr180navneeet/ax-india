@@ -35,4 +35,24 @@ class ProfileWebController extends Controller
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }
+
+    public function updatePassword(\Illuminate\Http\Request $request): RedirectResponse
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        if (!\Illuminate\Support\Facades\Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'The provided current password does not match.']);
+        }
+
+        $user->update([
+            'password' => \Illuminate\Support\Facades\Hash::rollbackPasswordHash ?? \Illuminate\Support\Facades\Hash::make($request->new_password)
+        ]);
+
+        return redirect()->back()->with('success', 'Password updated successfully.');
+    }
 }

@@ -1,16 +1,17 @@
 @extends('web.layouts.app')
 
 @section('content')
-<div class="container py-4">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card border-0 shadow-sm rounded-4">
-                <div class="card-header bg-primary text-white py-3 rounded-top-4">
-                    <h5 class="mb-0 fw-bold"><i class="bi bi-cloud-arrow-up me-2"></i>Upload New Video</h5>
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-header bg-transparent border-bottom p-4">
+                    <h4 class="mb-0 fw-bold text-dark serif-font"><i class="bi bi-cloud-arrow-up text-primary me-2"></i>Upload New Video</h4>
+                    <p class="text-muted small mb-0 mt-1">Publish standard videos or short clips to your channel</p>
                 </div>
                 <div class="card-body p-4">
                     @if ($errors->any())
-                        <div class="alert alert-danger rounded-3">
+                        <div class="alert alert-danger rounded-3 mb-4">
                             <ul class="mb-0">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -22,25 +23,25 @@
                     <form action="{{ route('videos.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Video File <span class="text-danger">*</span></label>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Video File <span class="text-danger">*</span></label>
                             <input type="file" name="video_file" class="form-control form-control-lg" accept="video/*" required>
                             <small class="text-muted">Supported formats: MP4, MOV, AVI, MKV (Max: 200MB)</small>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Title <span class="text-danger">*</span></label>
                             <input type="text" name="title" class="form-control" placeholder="Enter video title" value="{{ old('title') }}" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Description</label>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Description</label>
                             <textarea name="description" class="form-control" rows="4" placeholder="Tell viewers about your video">{{ old('description') }}</textarea>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">Category <span class="text-danger">*</span></label>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label fw-semibold text-dark">Category <span class="text-danger">*</span></label>
                                 <select name="category_id" class="form-select" required>
                                     <option value="">Select Category</option>
                                     @foreach($categories as $category)
@@ -49,8 +50,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-semibold">Visibility</label>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label fw-semibold text-dark">Visibility</label>
                                 <select name="visibility" class="form-select">
                                     <option value="public">Public</option>
                                     <option value="unlisted">Unlisted</option>
@@ -59,20 +60,20 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Custom Thumbnail</label>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Custom Thumbnail</label>
                             <input type="file" name="thumbnail" class="form-control" accept="image/*">
                             <small class="text-muted">Recommended aspect ratio: 16:9 (JPEG, PNG, WebP)</small>
                         </div>
 
                         <div class="form-check mb-4">
                             <input type="checkbox" name="allow_downloads" value="1" class="form-check-input" id="allowDownloads" checked>
-                            <label class="form-check-label fw-semibold" for="allowDownloads">Allow viewers to download this video</label>
+                            <label class="form-check-label fw-semibold text-dark" for="allowDownloads">Allow viewers to download this video</label>
                         </div>
 
-                        <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('home') }}" class="btn btn-light px-4">Cancel</a>
-                            <button type="submit" class="btn btn-primary px-4 fw-semibold"><i class="bi bi-upload me-2"></i>Publish Video</button>
+                        <div class="d-flex justify-content-end gap-2 pt-2">
+                            <a href="{{ route('home') }}" class="btn-custom btn-outline-custom">Cancel</a>
+                            <button type="submit" class="btn-custom btn-primary-custom px-4"><i class="bi bi-upload me-2"></i>Publish Video</button>
                         </div>
                     </form>
                 </div>
