@@ -84,6 +84,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/notifications/{id}/read', [NotificationWebController::class, 'markAsRead'])->name('notifications.read');
     Route::post('/notifications/read-all', [NotificationWebController::class, 'markAllAsRead'])->name('notifications.read-all');
 
+    // Security & Device Management
+    Route::get('/settings/devices', [\App\Http\Controllers\DeviceManagementController::class, 'index'])->name('settings.devices');
+    Route::delete('/settings/devices/{id}', [\App\Http\Controllers\DeviceManagementController::class, 'revoke'])->name('settings.devices.revoke');
+
+    // Copyright Protection
+    Route::post('/videos/{video}/copyright-claim', [\App\Http\Controllers\CopyrightController::class, 'store'])->name('videos.copyright-claim');
+
     // Creator Studio Routes
     Route::prefix('creator')->name('creator.')->group(function () {
         Route::get('/dashboard', [CreatorDashboardController::class, 'index'])->name('dashboard');
@@ -91,6 +98,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/subscribers', [CreatorSubscriberController::class, 'index'])->name('subscribers');
         Route::get('/live', [LiveStreamController::class, 'index'])->name('live');
         Route::post('/live/key', [LiveStreamController::class, 'generateStreamKey'])->name('live.key');
+
+        // Creator Monetization Program
+        Route::get('/monetization', [\App\Http\Controllers\MonetizationController::class, 'index'])->name('monetization');
+        Route::post('/monetization/apply', [\App\Http\Controllers\MonetizationController::class, 'apply'])->name('monetization.apply');
     });
 });
 
