@@ -20,12 +20,38 @@
         <link rel="stylesheet" href="{{asset('assets/admin/css/bootstrapDataTable.css')}}" />
         <link rel="stylesheet" href="{{asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
         <link rel="stylesheet" href="{{asset('assets/admin/vendor/libs/apex-charts/apex-charts.css')}}" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('assets/common/css/theme.css?v=2.0')}}" />
         <script src="{{asset('assets/admin/vendor/js/helpers.js')}}"></script>
         <script src="{{asset('assets/admin/js/config.js')}}"></script>
         <link rel="stylesheet" href="{{asset('assets/admin/css/sweet-alert.css')}}" />
         @yield('style')
         <style>
-            
+            body, .layout-wrapper, .layout-container, .layout-page {
+                background-color: var(--parchment) !important;
+            }
+            .bg-menu-theme {
+                background-color: var(--linen) !important;
+                border-right: 1px solid var(--bone) !important;
+            }
+            .bg-menu-theme .menu-link, .bg-menu-theme .menu-header-text {
+                color: var(--text-primary) !important;
+            }
+            .bg-menu-theme .menu-item.active > .menu-link {
+                background-color: var(--almond-silk) !important;
+                color: var(--text-primary) !important;
+            }
+            .card {
+                background-color: var(--linen) !important;
+                border: 1px solid var(--bone) !important;
+                box-shadow: var(--shadow-soft) !important;
+                border-radius: var(--radius-md) !important;
+            }
+            .navbar-detached {
+                background-color: var(--bg-glass) !important;
+                border: 1px solid var(--bone) !important;
+                backdrop-filter: blur(16px);
+            }
         </style>
         
     </head>

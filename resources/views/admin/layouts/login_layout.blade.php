@@ -18,9 +18,36 @@
         <link rel="stylesheet" href="{{asset('assets/admin/css/demo.css')}}" />
         <link rel="stylesheet" href="{{asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
         <link rel="stylesheet" href="{{asset('assets/admin/vendor/css/pages/page-auth.css')}}" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('assets/common/css/theme.css?v=2.0')}}" />
         <script src="{{asset('assets/admin/vendor/js/helpers.js')}}"></script>
         <script src="{{asset('assets/admin/js/config.js')}}"></script>
         @yield('style')
+        <style>
+            body {
+                background: linear-gradient(135deg, var(--parchment), var(--linen)) !important;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .card {
+                background-color: var(--linen) !important;
+                border: 1px solid var(--bone) !important;
+                box-shadow: 0 15px 35px rgba(43, 37, 35, 0.08) !important;
+                border-radius: var(--radius-md) !important;
+            }
+            .btn-primary {
+                background-color: var(--almond-silk) !important;
+                border-color: var(--bone) !important;
+                color: var(--text-primary) !important;
+                font-weight: 700;
+            }
+            .btn-primary:hover {
+                background-color: var(--almond-cream) !important;
+                color: var(--text-primary) !important;
+            }
+        </style>
         
     </head>
     <body>

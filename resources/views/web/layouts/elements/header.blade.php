@@ -1,22 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-   
-    <div class="container-fluid">
-        
-        <a class="navbar-brand mt-2 mt-lg-0" href="#">
-            <h5 class="pt-1">{{ config('app.name') }}</h5>
-        </a>
-        
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex align-items-center justify-content-start">
-                
-            </div>
-            
+<header class="site-header">
+    <a class="brand-logo" href="{{ url('/') }}">
+        <div class="logo-icon">
+            <i class="bi bi-play-btn-fill"></i>
         </div>
-       
+        <span>AX-India</span>
+    </a>
+    
+    <div class="search-bar-container">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search videos, creators, or topics...">
     </div>
-   
-</nav>
+
+    <div class="nav-actions">
+        <a href="{{ route('admin.login') }}" class="btn-custom btn-outline-custom">
+            <i class="bi bi-person-lock"></i> Admin Portal
+        </a>
+        <button class="btn-custom btn-primary-custom">
+            <i class="bi bi-cloud-upload-fill"></i> Upload Video
+        </button>
+    </div>
+</header>
