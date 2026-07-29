@@ -13,8 +13,20 @@ use App\Http\Controllers\Web\SubscriptionWebController;
 use App\Http\Controllers\Web\SearchWebController;
 use App\Http\Controllers\Web\NotificationWebController;
 use App\Http\Controllers\Web\DownloadController;
+use App\Http\Controllers\Web\ShortsController;
+use App\Http\Controllers\Web\Creator\CreatorDashboardController;
+use App\Http\Controllers\Web\Creator\CreatorAnalyticsController;
+use App\Http\Controllers\Web\Creator\CreatorSubscriberController;
+use App\Http\Controllers\Web\Creator\LiveStreamController;
+
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminVideoModerationController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminAdvertisementController;
+use App\Http\Controllers\Admin\AdminVerificationController;
+use App\Http\Controllers\Admin\AdminReportController;
+use App\Http\Controllers\Admin\AdminPaymentController;
 
 // Public Web Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -22,6 +34,7 @@ Route::get('/watch/{slug}', [VideoWatchController::class, 'show'])->name('watch'
 Route::get('/channel/{username}', [ChannelController::class, 'show'])->name('channel');
 Route::get('/search', [SearchWebController::class, 'index'])->name('search');
 Route::get('/download/{id}', [DownloadController::class, 'download'])->name('videos.download');
+Route::get('/shorts', [ShortsController::class, 'index'])->name('shorts.index');
 
 // Authenticated Web Routes
 Route::middleware(['auth'])->group(function () {
@@ -59,6 +72,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/notifications', [NotificationWebController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{id}/read', [NotificationWebController::class, 'markAsRead'])->name('notifications.read');
     Route::post('/notifications/read-all', [NotificationWebController::class, 'markAllAsRead'])->name('notifications.read-all');
+
+    // Creator Studio Routes
+    Route::prefix('creator')->name('creator.')->group(function () {
+        Route::get('/dashboard', [CreatorDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/analytics', [CreatorAnalyticsController::class, 'index'])->name('analytics');
+        Route::get('/subscribers', [CreatorSubscriberController::class, 'index'])->name('subscribers');
+        Route::get('/live', [LiveStreamController::class, 'index'])->name('live');
+        Route::post('/live/key', [LiveStreamController::class, 'generateStreamKey'])->name('live.key');
+    });
 });
 
 // Admin Web Routes
@@ -86,5 +108,34 @@ Route::name('admin.')->prefix('admin')->group(function () {
             Route::delete("users/delete/{id}", [AdminUserController::class, 'destroy'])->name('destroy');
             Route::get("users/{id}", [AdminUserController::class, 'show'])->name('show');
         });
+
+        // Video Moderation
+        Route::get('moderation', [AdminVideoModerationController::class, 'index'])->name('moderation.index');
+        Route::post('moderation/{id}/approve', [AdminVideoModerationController::class, 'approve'])->name('moderation.approve');
+        Route::post('moderation/{id}/reject', [AdminVideoModerationController::class, 'reject'])->name('moderation.reject');
+
+        // Category Management
+        Route::get('categories', [AdminCategoryController::class, 'index'])->name('categories.index');
+        Route::post('categories', [AdminCategoryController::class, 'store'])->name('categories.store');
+        Route::delete('categories/{id}', [AdminCategoryController::class, 'destroy'])->name('categories.destroy');
+
+        // Advertisement Management
+        Route::get('advertisements', [AdminAdvertisementController::class, 'index'])->name('advertisements.index');
+        Route::post('advertisements', [AdminAdvertisementController::class, 'store'])->name('advertisements.store');
+        Route::post('advertisements/{id}/toggle', [AdminAdvertisementController::class, 'toggle'])->name('advertisements.toggle');
+        Route::delete('advertisements/{id}', [AdminAdvertisementController::class, 'destroy'])->name('advertisements.destroy');
+
+        // Creator Verifications
+        Route::get('verifications', [AdminVerificationController::class, 'index'])->name('verifications.index');
+        Route::post('verifications/{id}/approve', [AdminVerificationController::class, 'approve'])->name('verifications.approve');
+        Route::post('verifications/{id}/reject', [AdminVerificationController::class, 'reject'])->name('verifications.reject');
+
+        // Reports Management
+        Route::get('reports', [AdminReportController::class, 'index'])->name('reports.index');
+        Route::delete('reports/{id}/resolve', [AdminReportController::class, 'resolve'])->name('reports.resolve');
+
+        // Payments & Payouts
+        Route::get('payments', [AdminPaymentController::class, 'index'])->name('payments.index');
+        Route::post('payments/{id}/process', [AdminPaymentController::class, 'process'])->name('payments.process');
     });
 });

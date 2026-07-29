@@ -18,11 +18,14 @@ class Video extends Model
         'visibility', 'is_published', 'scheduled_at', 'allow_downloads',
         'views_count', 'likes_count', 'dislikes_count', 'comments_count',
         'category_id', 'status', 'rejected_reason',
+        'is_short', 'is_live', 'stream_key', 'live_status', 'earnings',
     ];
 
     protected $casts = [
         'is_published' => 'bool',
         'allow_downloads' => 'bool',
+        'is_short' => 'bool',
+        'is_live' => 'bool',
         'scheduled_at' => 'datetime',
         'visibility' => VideoVisibility::class,
         'status' => VideoStatus::class,
