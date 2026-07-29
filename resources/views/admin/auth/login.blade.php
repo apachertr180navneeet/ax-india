@@ -3,7 +3,7 @@
 
 <div class="auth-wrapper" style="min-height: 100vh;">
     <div class="auth-card text-center" style="max-width: 420px; margin: auto;">
-        <div class="logo-icon mx-auto mb-3" style="width: 54px; height: 54px; background: linear-gradient(135deg, var(--accent-red), #cc0029); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 0, 51, 0.4);">
+        <div class="logo-icon mx-auto mb-3" style="width: 54px; height: 54px; background: linear-gradient(135deg, var(--accent-red), #3730a3); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(171, 196, 255, 0.6);">
             <i class="bi bi-shield-lock-fill fs-3 text-white"></i>
         </div>
         <h2 class="auth-title">Admin Portal</h2>

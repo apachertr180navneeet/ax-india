@@ -5,11 +5,11 @@
     <!-- Welcome Spotlight Banner -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card" style="background: linear-gradient(135deg, #1f1f1f, #141414) !important; border: 1px solid var(--yt-border);">
+            <div class="card" style="background: linear-gradient(135deg, #ffffff, var(--lavender-light)) !important; border: 1px solid var(--lavender-accent);">
                 <div class="card-body p-4 d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="badge-custom badge-active mb-2"><i class="bi bi-shield-check"></i> Video Admin Console</span>
-                        <h2 class="mb-2 text-white fw-bold">Welcome Back, {{ Auth::user()->name ?? 'Administrator' }}</h2>
+                        <span class="badge-custom badge-active mb-2"><i class="bi bi-shield-check me-1"></i> Video Admin Console</span>
+                        <h2 class="mb-2 text-dark fw-bold">Welcome Back, {{ Auth::user()->name ?? 'Administrator' }}</h2>
                         <p class="mb-0 text-muted" style="max-width: 600px;">
                             Monitor platform streaming performance, manage video channels, upload queues, and system settings across AX India.
                         </p>

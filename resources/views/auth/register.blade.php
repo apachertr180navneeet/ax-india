@@ -5,8 +5,8 @@
 <div class="auth-wrapper">
     <div class="auth-card" style="max-width: 580px;">
         <div class="auth-header">
-            <div class="logo-icon mx-auto mb-3" style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--almond-silk), var(--almond-cream)); border: 1px solid var(--bone); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(213, 189, 175, 0.4);">
-                <i class="bi bi-play-btn-fill fs-4" style="color: var(--text-primary);"></i>
+            <div class="logo-icon mx-auto mb-3" style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent-red), #3730a3); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(171, 196, 255, 0.6);">
+                <i class="bi bi-play-btn-fill fs-4 text-white"></i>
             </div>
             <h2 class="auth-title">Join AX-India</h2>
             <p class="auth-subtitle">Create your free account to start watching and sharing</p>

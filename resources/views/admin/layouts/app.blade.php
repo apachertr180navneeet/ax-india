@@ -28,34 +28,62 @@
         @yield('style')
         <style>
             body, .layout-wrapper, .layout-container, .layout-page, .content-wrapper {
-                background-color: var(--bg-main) !important;
+                background-color: var(--alice-blue) !important;
                 color: var(--text-primary) !important;
             }
             .bg-menu-theme {
-                background-color: var(--yt-dark-card) !important;
-                border-right: 1px solid var(--yt-border) !important;
+                background-color: #ffffff !important;
+                border-right: 1px solid var(--lavender-accent) !important;
             }
             .bg-menu-theme .menu-link, .bg-menu-theme .menu-header-text {
-                color: var(--text-primary) !important;
+                color: #1e293b !important;
             }
-            .bg-menu-theme .menu-item.active > .menu-link {
-                background-color: var(--accent-red) !important;
+            aside#layout-menu .menu-inner .menu-item.active > .menu-link,
+            aside#layout-menu.bg-menu-theme .menu-inner .menu-item.active > .menu-link,
+            .layout-wrapper .bg-menu-theme .menu-inner .menu-item.active > .menu-link,
+            html .bg-menu-theme .menu-inner .menu-item.active > .menu-link,
+            .menu-vertical .menu-inner .menu-item.active > .menu-link {
+                background-color: #4f46e5 !important;
+                background: #4f46e5 !important;
+                box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4) !important;
+            }
+
+            aside#layout-menu .menu-inner .menu-item.active > .menu-link,
+            aside#layout-menu .menu-inner .menu-item.active > .menu-link *,
+            aside#layout-menu .menu-inner .menu-item.active > .menu-link i,
+            aside#layout-menu .menu-inner .menu-item.active > .menu-link div,
+            aside#layout-menu .menu-inner .menu-item.active > .menu-link span,
+            .bg-menu-theme .menu-inner .menu-item.active > .menu-link,
+            .bg-menu-theme .menu-inner .menu-item.active > .menu-link *,
+            .bg-menu-theme .menu-inner .menu-item.active > .menu-link i,
+            .bg-menu-theme .menu-inner .menu-item.active > .menu-link div,
+            .bg-menu-theme .menu-inner .menu-item.active > .menu-link span,
+            .menu-item.active > .menu-link,
+            .menu-item.active > .menu-link div,
+            .menu-item.active > .menu-link i {
                 color: #ffffff !important;
+                font-weight: 700 !important;
+            }
+
+            .bg-menu-theme .menu-link,
+            .bg-menu-theme .menu-item .menu-link div,
+            .bg-menu-theme .menu-item .menu-link i {
+                color: #1e293b !important;
             }
             .card {
-                background-color: var(--yt-dark-card) !important;
-                border: 1px solid var(--yt-border) !important;
+                background-color: #ffffff !important;
+                border: 1px solid var(--lavender-accent) !important;
                 box-shadow: var(--shadow-soft) !important;
                 border-radius: var(--radius-md) !important;
                 color: var(--text-primary) !important;
             }
             .navbar-detached {
                 background-color: var(--bg-glass) !important;
-                border: 1px solid var(--yt-border) !important;
+                border: 1px solid var(--lavender-accent) !important;
                 backdrop-filter: blur(16px);
             }
             .table-hover tbody tr:hover {
-                background-color: var(--yt-card-hover) !important;
+                background-color: var(--lavender-light) !important;
                 color: var(--text-primary) !important;
             }
         </style>

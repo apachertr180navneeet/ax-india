@@ -5,7 +5,7 @@
 <div class="auth-wrapper">
     <div class="auth-card" style="max-width: 440px;">
         <div class="auth-header">
-            <div class="logo-icon mx-auto mb-3" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--accent-red), #cc0029); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 0, 51, 0.4);">
+            <div class="logo-icon mx-auto mb-3" style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--accent-red), #3730a3); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(171, 196, 255, 0.6);">
                 <i class="bi bi-play-btn-fill fs-3 text-white"></i>
             </div>
             <h2 class="auth-title">Welcome Back</h2>
