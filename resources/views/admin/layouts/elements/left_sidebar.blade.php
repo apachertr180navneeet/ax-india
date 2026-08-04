@@ -67,6 +67,27 @@
 			</a>
 		</li>
 
+		<li class="menu-item {{ request()->is('admin/notifications*') ? 'active' : ''}}">
+			<a href="{{route('admin.notifications.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-bell"></i>
+				<div data-i18n="Notifications">Notifications</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/spam*') ? 'active' : ''}}">
+			<a href="{{route('admin.spam.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-bot"></i>
+				<div data-i18n="Spam">AI Spam Detection</div>
+			</a>
+		</li>
+
+		<li class="menu-item {{ request()->is('admin/security*') ? 'active' : ''}}">
+			<a href="{{route('admin.security.index')}}" class="menu-link">
+				<i class="menu-icon tf-icons bx bx-lock-alt"></i>
+				<div data-i18n="Security">Encryption & Backups</div>
+			</a>
+		</li>
+
 		<li class="menu-item {{ request()->is('admin/payments*') ? 'active' : ''}}">
 			<a href="{{route('admin.payments.index')}}" class="menu-link">
 				<i class="menu-icon tf-icons bx bx-dollar-circle"></i>

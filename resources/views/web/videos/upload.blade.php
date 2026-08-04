@@ -61,6 +61,19 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="form-label fw-semibold text-dark">Tags</label>
+                            <input type="text" name="tags" id="tagInput" class="form-control" placeholder="Type a tag and press Enter" autocomplete="off">
+                            <div class="d-flex flex-wrap gap-2 mt-2" id="tagChips"></div>
+                            <div class="d-flex flex-wrap gap-2 mt-2">
+                                @foreach(['trending','tutorial','music','review','shorts','viral'] as $suggest)
+                                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill tag-suggest" data-tag="{{ $suggest }}">#{{ $suggest }}</button>
+                                @endforeach
+                            </div>
+                            <small class="text-muted">UI only — tags are for display on upload form</small>
+                            <input type="hidden" name="tags_json" id="tagsJson" value="[]">
+                        </div>
+
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark">Custom Thumbnail</label>
                             <input type="file" name="thumbnail" class="form-control" accept="image/*">
                             <small class="text-muted">Recommended aspect ratio: 16:9 (JPEG, PNG, WebP)</small>
@@ -81,4 +94,50 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+(function () {
+    const input = document.getElementById('tagInput');
+    const chips = document.getElementById('tagChips');
+    const hidden = document.getElementById('tagsJson');
+    if (!input || !chips) return;
+    const tags = [];
+
+    function render() {
+        chips.innerHTML = tags.map(function (t, i) {
+            return '<span class="badge rounded-pill text-bg-primary d-inline-flex align-items-center gap-1 px-3 py-2">#' + t +
+                ' <button type="button" class="btn-close btn-close-white" style="font-size:.55rem" data-i="' + i + '" aria-label="Remove"></button></span>';
+        }).join('');
+        hidden.value = JSON.stringify(tags);
+    }
+
+    function addTag(raw) {
+        const t = String(raw || '').trim().replace(/^#/, '').toLowerCase();
+        if (!t || tags.includes(t) || tags.length >= 12) return;
+        tags.push(t);
+        render();
+    }
+
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            addTag(input.value);
+            input.value = '';
+        }
+    });
+
+    chips.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-i]');
+        if (!btn) return;
+        tags.splice(parseInt(btn.dataset.i, 10), 1);
+        render();
+    });
+
+    document.querySelectorAll('.tag-suggest').forEach(function (btn) {
+        btn.addEventListener('click', function () { addTag(btn.dataset.tag); });
+    });
+})();
+</script>
 @endsection

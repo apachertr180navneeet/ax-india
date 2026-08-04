@@ -1,0 +1,106 @@
+1. Watch video UI — done on page (/play/{id})
+	Report Videos — Report button + modal on watch UI
+	Optional Downloads — Download button + quality modal on watch UI
+	Share UI — Share modal on watch UI
+	Save UI — Save modal on watch UI + Create Playlist button
+	Like / Dislike — toggle + count
+	Subscribe — Subscribe / Subscribed toggle
+	Comments — post, like, dislike, reply (UI)
+	Custom player — play/pause, time, volume, fullscreen, progress bar
+	More menu — Loop, PiP, Quality, Download, Report
+	Quality options — Auto, 1080p, 720p, 480p, 360p, 144p
+	Up next sidebar — related videos
+	Copyright claim — Copyright button + claim modal on watch UI
+	Mobile modals — Download / Share / Save / Report / Copyright centered with equal side margins
+	Mobile modal fix — no left-shift from Bootstrap scrollbar padding
+
+2. Admin Notifications UI — done on page (/admin/notifications)
+	Stats cards — Unread, Today, Scheduled, Total
+	Filter tabs — All, Unread, System, Creators, Users, Broadcasts
+	Search — search notifications by title/message
+	Notification list — icon, title, message, type badge, audience, time
+	Unread state — "New" badge + highlight
+	Mark as read — per notification
+	Mark all read — header action
+	Delete notification — remove from list (UI)
+	Compose modal — title, message, audience, type, schedule option
+	Send notification — adds item to list + toast (UI demo)
+	Sidebar link — Notifications in admin menu
+
+3. Creator Analytics UI — done on page (/creator/analytics)
+	Period filters — Last 7 days, 28 days, 90 days, Lifetime
+	KPI cards — Total Views, Total Likes, Comments, Est. Revenue (+ % change)
+	Views over time — bar chart (UI demo, updates with period)
+	Traffic sources — search, suggested, external, channel, other
+	Engagement stats — Avg. view duration, Click-through rate, Returning viewers
+	Top videos table — rank, thumbnail, title, views, likes, comments, published date
+	Studio links — Dashboard, Subscribers, Revenue, Upload
+	Empty state — message when no videos yet
+
+4. Creator Subscribers UI — done on page (/creator/subscribers)
+	KPI cards — Total subscribers, New this week, Notifications on, Unsubscribed (30d)
+	Filter tabs — All, Active, Bell on
+	Search — search subscribers by name/email
+	Subscriber table — avatar, name, email, joined, notifications, status, action
+	Export — Export (UI) button
+	Studio links — Dashboard, Analytics
+
+5. Upload Tags UI — done on page (/upload)
+	Tags input — type tag + Enter
+	Tag chips — add/remove chips (max 12)
+	Suggestions — quick-add suggestion pills
+	Hidden JSON field — tags_json for form display (UI only)
+
+6. 2FA Setup UI — done on page (/settings) + (/settings/2fa)
+	Account Settings tab — 2FA tab between Password Security and Avatar & Cover
+	Deep link — /settings?tab=2fa opens 2FA tab
+	Authenticator setup — setup steps + demo QR + setup key + copy
+	OTP verify — 6-digit code to enable (UI)
+	Status badge — Off / Active
+	Backup codes — grid + download codes (UI)
+	Disable 2FA — toggle back to setup
+	SMS backup — optional phone save card (UI)
+	Security tips — side card
+	Device Management link — to /settings/devices
+	Toast feedback — enable / disable / copy / download (UI)
+	Mobile tabs — settings pill tabs stay one row, horizontal scroll (no wrap)
+	Mobile setup key — full-width pill input + Copy
+	Mobile Enable 2FA — full-width button under OTP
+	Mobile card spacing — settings page in padded container (card no longer sticks to edges)
+
+7. Copyright Protection UI — done on watch page (/play/{id})
+	Copyright button — next to Report
+	Claim modal — rights holder name, email, original work, claim type, confirmation checkbox
+	Submit claim — toast confirmation (UI demo)
+
+8. Admin AI Spam Detection UI — done on page (/admin/spam)
+	AI scanning toggle — On/Off
+	Stats cards — Flagged today, Auto-removed, False positives, Risk score
+	Filter tabs — All, Comments, Accounts, Videos
+	Flagged list — item, type, score, reason, detected time
+	Actions — Keep / Remove (UI)
+	Refresh — refresh button
+	Sidebar link — AI Spam Detection in admin menu
+
+9. Admin Encryption & Backups UI — done on page (/admin/security)
+	Encryption section — at-rest AES-256, in-transit TLS status
+	Key rotation — policy select + Rotate keys (UI)
+	Daily backups — auto backup toggle, last/next backup, retention, status
+	Backup window — schedule select
+	Run backup now / Restore wizard — UI actions
+	Backup history table — recent backup rows
+	Sidebar link — Encryption & Backups in admin menu
+
+10. Mobile pill nav UI — done on (/settings) + (/creator/dashboard)
+	Account Settings tabs — single-row pill bar, swipe/scroll horizontally on mobile
+	Hidden scrollbar — clean pill look on touch devices
+	No multi-row wrap — Profile / Password / 2FA / Avatar / Privacy / Notifications stay in one strip
+	Creator Dashboard nav — same horizontal scroll pill pattern (Dashboard, Analytics, Subscribers, Revenue, Live, Upload, Shorts)
+	Tablet + phone — full-width scroll container under 992px
+
+11. Mobile layout fixes — done on (/settings) + (/play/{id})
+	Settings card edges — container + side padding so Profile form card is not flush to screen
+	Settings card radius/padding — softer card padding on small screens
+	Watch Download Quality modal — centered (equal left/right gap)
+	Watch modals (Share, Save, Report, Copyright) — same centered mobile dialog sizing
+	Scrollbar padding fix — modal no longer sticks/shifts to the left when opened

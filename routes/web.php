@@ -1,37 +1,45 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\HomeController;
-use App\Http\Controllers\Web\VideoWatchController;
-use App\Http\Controllers\Web\VideoUploadController;
-use App\Http\Controllers\Web\ProfileWebController;
-use App\Http\Controllers\Web\ChannelController;
-use App\Http\Controllers\Web\HistoryWebController;
-use App\Http\Controllers\Web\FavoriteWebController;
-use App\Http\Controllers\Web\PlaylistWebController;
-use App\Http\Controllers\Web\SubscriptionWebController;
-use App\Http\Controllers\Web\SearchWebController;
-use App\Http\Controllers\Web\NotificationWebController;
-use App\Http\Controllers\Web\DownloadController;
-use App\Http\Controllers\Web\ShortsController;
+use App\Http\Controllers\Admin\AdminAdvertisementController;
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminNotificationController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminReportController;
+use App\Http\Controllers\Admin\AdminSecurityController;
+use App\Http\Controllers\Admin\AdminSpamController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminVerificationController;
+use App\Http\Controllers\Admin\AdminVideoModerationController;
+use App\Http\Controllers\CopyrightController;
+use App\Http\Controllers\DeviceManagementController;
+use App\Http\Controllers\MonetizationController;
+use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\Web\AuthWebController;
-use App\Http\Controllers\Web\Creator\CreatorDashboardController;
+use App\Http\Controllers\Web\ChannelController;
 use App\Http\Controllers\Web\Creator\CreatorAnalyticsController;
+use App\Http\Controllers\Web\Creator\CreatorDashboardController;
 use App\Http\Controllers\Web\Creator\CreatorSubscriberController;
 use App\Http\Controllers\Web\Creator\LiveStreamController;
-
-use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\AdminVideoModerationController;
-use App\Http\Controllers\Admin\AdminCategoryController;
-use App\Http\Controllers\Admin\AdminAdvertisementController;
-use App\Http\Controllers\Admin\AdminVerificationController;
-use App\Http\Controllers\Admin\AdminReportController;
-use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Web\DemoWatchController;
+use App\Http\Controllers\Web\DownloadController;
+use App\Http\Controllers\Web\FavoriteWebController;
+use App\Http\Controllers\Web\HistoryWebController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\NotificationWebController;
+use App\Http\Controllers\Web\PlaylistWebController;
+use App\Http\Controllers\Web\ProfileWebController;
+use App\Http\Controllers\Web\SearchWebController;
+use App\Http\Controllers\Web\ShortsController;
+use App\Http\Controllers\Web\SubscriptionWebController;
+use App\Http\Controllers\Web\VideoUploadController;
+use App\Http\Controllers\Web\VideoWatchController;
+use Illuminate\Support\Facades\Route;
 
 // Public Web Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/play/{id}', [DemoWatchController::class, 'show'])->name('play.demo');
 Route::get('/watch/{slug}', [VideoWatchController::class, 'show'])->name('watch');
 Route::get('/channel/{username}', [ChannelController::class, 'show'])->name('channel');
 Route::get('/search', [SearchWebController::class, 'index'])->name('search');
@@ -87,11 +95,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/notifications/read-all', [NotificationWebController::class, 'markAllAsRead'])->name('notifications.read-all');
 
     // Security & Device Management
-    Route::get('/settings/devices', [\App\Http\Controllers\DeviceManagementController::class, 'index'])->name('settings.devices');
-    Route::delete('/settings/devices/{id}', [\App\Http\Controllers\DeviceManagementController::class, 'revoke'])->name('settings.devices.revoke');
+    Route::get('/settings/devices', [DeviceManagementController::class, 'index'])->name('settings.devices');
+    Route::delete('/settings/devices/{id}', [DeviceManagementController::class, 'revoke'])->name('settings.devices.revoke');
+    Route::get('/settings/2fa', [TwoFactorController::class, 'index'])->name('settings.2fa');
 
     // Copyright Protection
-    Route::post('/videos/{video}/copyright-claim', [\App\Http\Controllers\CopyrightController::class, 'store'])->name('videos.copyright-claim');
+    Route::post('/videos/{video}/copyright-claim', [CopyrightController::class, 'store'])->name('videos.copyright-claim');
 
     // Creator Studio Routes
     Route::prefix('creator')->name('creator.')->group(function () {
@@ -102,9 +111,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/live/key', [LiveStreamController::class, 'generateStreamKey'])->name('live.key');
 
         // Creator Monetization Program
-        Route::get('/monetization', [\App\Http\Controllers\MonetizationController::class, 'index'])->name('monetization');
-        Route::post('/monetization/apply', [\App\Http\Controllers\MonetizationController::class, 'apply'])->name('monetization.apply');
-        Route::post('/monetization/payout-method', [\App\Http\Controllers\MonetizationController::class, 'updatePayoutMethod'])->name('monetization.payout');
+        Route::get('/monetization', [MonetizationController::class, 'index'])->name('monetization');
+        Route::post('/monetization/apply', [MonetizationController::class, 'apply'])->name('monetization.apply');
+        Route::post('/monetization/payout-method', [MonetizationController::class, 'updatePayoutMethod'])->name('monetization.payout');
     });
 });
 
@@ -127,11 +136,11 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::post('profile', [AdminAuthController::class, 'updateAdminProfile'])->name('update.profile');
 
         Route::name('users.')->group(function () {
-            Route::get("users", [AdminUserController::class, 'index'])->name('index');
-            Route::get("users/alluser", [AdminUserController::class, 'getallUser'])->name('alluser');
-            Route::post("users/status", [AdminUserController::class, 'userStatus'])->name('status');
-            Route::delete("users/delete/{id}", [AdminUserController::class, 'destroy'])->name('destroy');
-            Route::get("users/{id}", [AdminUserController::class, 'show'])->name('show');
+            Route::get('users', [AdminUserController::class, 'index'])->name('index');
+            Route::get('users/alluser', [AdminUserController::class, 'getallUser'])->name('alluser');
+            Route::post('users/status', [AdminUserController::class, 'userStatus'])->name('status');
+            Route::delete('users/delete/{id}', [AdminUserController::class, 'destroy'])->name('destroy');
+            Route::get('users/{id}', [AdminUserController::class, 'show'])->name('show');
         });
 
         // Video Moderation
@@ -158,6 +167,15 @@ Route::name('admin.')->prefix('admin')->group(function () {
         // Reports Management
         Route::get('reports', [AdminReportController::class, 'index'])->name('reports.index');
         Route::delete('reports/{id}/resolve', [AdminReportController::class, 'resolve'])->name('reports.resolve');
+
+        // Admin Notifications
+        Route::get('notifications', [AdminNotificationController::class, 'index'])->name('notifications.index');
+
+        // AI Spam Detection (UI)
+        Route::get('spam', [AdminSpamController::class, 'index'])->name('spam.index');
+
+        // Data Encryption & Backups (UI)
+        Route::get('security', [AdminSecurityController::class, 'index'])->name('security.index');
 
         // Payments & Payouts
         Route::get('payments', [AdminPaymentController::class, 'index'])->name('payments.index');

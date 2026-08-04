@@ -7,7 +7,7 @@
     <div class="card mb-4">
         <div class="card-header border-0 bg-transparent d-flex align-items-center justify-content-between">
             <h5 class="mb-0 text-dark">Logged In Devices</h5>
-            <span class="badge bg-success"><i class="bi bi-shield-check me-1"></i>2FA Active</span>
+            <a href="{{ route('settings.2fa') }}" class="badge bg-primary text-decoration-none"><i class="bi bi-shield-lock me-1"></i>Manage 2FA</a>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
